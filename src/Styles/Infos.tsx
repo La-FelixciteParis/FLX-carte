@@ -44,7 +44,7 @@ p{
         border-top: 2px solid ${({color})=>color};
         border-bottom: 2px solid ${({color})=>color};
         border-left: 2px solid ${({color})=>color};
-        border-radius: 20px 10px 10px 20px;
+        border-radius: 20px 0 0 20px;
     }
 }
 
