@@ -13,14 +13,14 @@ import { UserType } from "../Types/User"
 
 export const Info = ()=>{
 
-    const {id,email} = useParams()
+    const {id} = useParams()
 
     const [client,setClient]=useState<UserType|null>(null)
     const [village,setVillage]=useState<string|null>(null)
     const [commerce,setCommerce]=useState<boolean>(true)
     const [color,setColor]=useState<string>("#000000")
 
-    const {idUser,setIdUser,infoIdUser,logoutId,setEmail} = useContext(UserContext) as any
+    const {idUser,setIdUser,infoIdUser,logoutId} = useContext(UserContext) as any
     const {user,logoutCommerçant} = useContext(CommerçantContext) as any
 
     const navigate=useNavigate()
@@ -32,8 +32,7 @@ export const Info = ()=>{
     },[idUser])
 
     useEffect(()=>{
-        if(id && email){
-            setEmail(email)
+        if(id){
             setIdUser(id)
         }
     },[])
