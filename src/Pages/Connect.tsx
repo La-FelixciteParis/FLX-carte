@@ -42,7 +42,7 @@ export const Connect = () =>{
         }
     },[infoIdUser])
 
-    const regex = /FLX-(ACT|HBT|SJR)-\d{3}-(ACPB|ADCFSA|HAPCO|VILFAI)-\d{4}/
+    const regex = /FLX-(COM|ACT|HBT|SJR)-\d{3}-(ACPB|ADCFSA|HAPCO|VILFAI|FLX)-\d{4}/
 
     const handleSubmit = async(e:any)=> {
         e.preventDefault()
