@@ -43,6 +43,8 @@ p{
         transition: padding 0.5s;
         border-top: 2px solid ${({color})=>color};
         border-bottom: 2px solid ${({color})=>color};
+        border-left: 2px solid ${({color})=>color};
+        border-radius: 20px 10px 10px 20px;
     }
 }
 
