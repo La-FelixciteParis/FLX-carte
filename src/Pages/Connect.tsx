@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { CreateToken } from "../API/HelloAsso/Tokens"
+// import { CreateToken } from "../API/HelloAsso/Tokens"
 import { UserParIdentifiant } from "../API/Supabase/User"
 import { Input } from "../Components/Input"
 import { UserContext } from "../Context/IdUser"
@@ -21,13 +21,13 @@ export const Connect = () =>{
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        testAPI()
-    },[])
+    // useEffect(()=>{
+    //     testAPI()
+    // },[])
 
-    const testAPI = async()=>{
-        await CreateToken()
-    }
+    // const testAPI = async()=>{
+    //     await CreateToken()
+    // }
 
     useEffect(()=>{
         if(errorNumber>=3){
