@@ -26,70 +26,54 @@ export const Info = ()=>{
     const navigate=useNavigate()
 
     useEffect(()=>{
-        if(idUser){
-            UserFetch()
-        }
-    },[idUser])
-
-    useEffect(()=>{
-        if(id){
-            setIdUser(id)
-        }
+        const localToken = localStorage.getItem('TokenCommerçantFLX')
+            if(!localToken){
+                setIdUser(id)
+            }
     },[])
 
     useEffect(()=>{
-
-        if(client){
-
-            if(user){            
-                if(user==="none"){
-                    logoutCommerçant()
-                    logoutId()
-                    navigate("/")
-                }else{
-
-                    if(client.email===user.email){
-                        setCommerce(false)
-                    }else{
-                        setCommerce(true)
-                    }
-                }
-            }else{
-                setCommerce(false)
-            }
-
-            setColor(client.Couleur)
-        }
-    },[client])
-
-    useEffect(()=>{
-        if(client){            
-            if(user==="none"){
-                logoutCommerçant()
-                logoutId()
-                navigate("/")
-            }else{
-
-                if(client.email===user.email){
-                    setCommerce(false)
-                }else{
-                    setCommerce(true)
-                }
-            }
+        if(user==="none"){
+            logoutId()
+            logoutCommerçant()
+            navigate("/")
+        }else if (user){
+            VerifClientFetch()
         }else{
             setCommerce(false)
+            setIdUser(id)
         }
     },[user])
+
+    useEffect(()=>{
+        if(idUser){
+            ClientFetch()
+        }
+    },[idUser])
+
 
     useEffect(()=>{
         Village()
     },[infoIdUser])
 
-    const UserFetch = async()=>{
+    const VerifClientFetch = async()=>{
+        if(id){
+            const clientApi = await UserParIdentifiant(id) as any
+            if(clientApi[0].email===user.email){
+                setCommerce(false)
+            }else{
+                setCommerce(true)
+            }
+             setIdUser(id)
+        }
+    }
+
+    const ClientFetch = async()=>{
         if(idUser){
             
-            const userApi = await UserParIdentifiant(idUser) as any
-            setClient(userApi[0]);
+            const clientApi = await UserParIdentifiant(idUser) as any
+            setClient(clientApi[0]);
+            setColor(clientApi[0].Couleur)
         }
     }
 
@@ -108,7 +92,7 @@ export const Info = ()=>{
     const handleCouleurSave =async()=>{
         if(client){
             await ChangeColorUser(color,client.id)
-            UserFetch()
+            ClientFetch()
         }
     }
 
@@ -128,7 +112,7 @@ export const Info = ()=>{
                         <button onClick={handleCouleurSave} disabled={client?.Couleur===color} style={{borderColor: color}}>Sauvegarder</button>
                     </div>}
                 </article>
-                {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}`}/>}
+                {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}/${client.email}`}/>}
             </section>
              {commerce && <p>Ce qu'on veut faire avec la carte</p>}
         </InfoContain>

@@ -11,7 +11,7 @@ const CommerçantContextProvider = ({children}:ChildrenPropsType) =>{
     const [token,setToken] = useState<string>('')
 
     useEffect(()=>{
-        const localToken = localStorage.getItem('TokenCarteACT')
+        const localToken = localStorage.getItem('TokenCommerçantFLX')
         if(localToken){
             setToken(localToken)
         }
@@ -19,7 +19,7 @@ const CommerçantContextProvider = ({children}:ChildrenPropsType) =>{
 
     useEffect(()=>{
         if(token){
-            localStorage.setItem('TokenCarteACT',token)
+            localStorage.setItem('TokenCommerçantFLX',token)
             ACT()
         }
     },[token])
@@ -38,7 +38,7 @@ const CommerçantContextProvider = ({children}:ChildrenPropsType) =>{
     const logoutCommerçant = ()=>{
         setUser(null)
         setToken('')
-        localStorage.removeItem('TokenCarteACT')
+        localStorage.removeItem('TokenCommerçantFLX')
 
     }
 
