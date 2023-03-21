@@ -114,7 +114,7 @@ export const Info = ()=>{
                             <button onClick={handleCouleurSave} disabled={client.Couleur===color} style={{borderColor: color}}>Sauvegarder</button>
                         </div>}
                     </article>
-                    {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}/${client.email}`}/>}
+                    {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}`}/>}
                 </section>
                  {commerce && <p>Ce qu'on veut faire avec la carte</p>}
             </InfoContain>
