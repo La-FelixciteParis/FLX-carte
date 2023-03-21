@@ -3,12 +3,9 @@ import styled from "styled-components";
 export const FooterStyle = styled.footer`
     background: black;
     display: flex;
-    padding: 0 20px;
+    padding:20px;
     align-items:center;
-    position:fixed;
-    bottom: 0;
     width:100vw;
-    height: 218px;
     section{
         flex:1;
         display:flex;
@@ -46,7 +43,6 @@ export const FooterStyle = styled.footer`
 
     @media (max-width: 500px){
         flex-direction:column;
-        overflow:auto;
         padding-bottom:10px;
     }
 `
