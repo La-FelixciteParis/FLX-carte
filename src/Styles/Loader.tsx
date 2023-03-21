@@ -10,6 +10,6 @@ const Rotate = keyframes`
 `
 
 export const Img = styled.img`
-    width: 50vw;
-    animation: ${Rotate} 1s infinite;
+    width: 30vw;
+    animation: ${Rotate} 2s infinite;
 `
