@@ -11,9 +11,16 @@ const Rotate = keyframes`
 
 export const Load = styled.div`
     display: flex;
+    flex-direction:column;
     align-items:center;
     justify-content: center;
     flex: 1;
+
+    p, p:hover{
+        cursor: default;
+        padding: 0;
+        border:none;
+    }
 
     img{
         width: 30vw;
