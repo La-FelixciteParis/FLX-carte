@@ -97,24 +97,26 @@ export const Info = ()=>{
     }
 
 
-    return (
-        <InfoContain color={color}>
-            <h1>{client?.Prénom} {client?.Nom}</h1>
-            <section>
-                <article>
-                    <p>{client?.email}</p>
-                    {infoIdUser && <p>Association: {infoIdUser[3]}</p>}
-                    {village && <p>Village: {village}</p>}
-                    <p>Créer le {moment(client?.created_at).format("DD/MM/YYYY")}</p>
-                    {!commerce && <div>
-                        <label htmlFor="Couleur">Choisir votre couleur</label>
-                        <input type='color' name="Couleur" value={color} onChange={handleColorChange}/>
-                        <button onClick={handleCouleurSave} disabled={client?.Couleur===color} style={{borderColor: color}}>Sauvegarder</button>
-                    </div>}
-                </article>
-                {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}/${client.email}`}/>}
-            </section>
-             {commerce && <p>Ce qu'on veut faire avec la carte</p>}
-        </InfoContain>
-    )
+    if (client){
+        return (
+            <InfoContain color={color}>
+                <h1>{client.Prénom} {client.Nom}</h1>
+                <section>
+                    <article>
+                        <p>{client.email}</p>
+                        {infoIdUser && <p>Association: {infoIdUser[3]}</p>}
+                        {village && <p>Village: {village}</p>}
+                        <p>Créer le {moment(client.created_at).format("DD/MM/YYYY")}</p>
+                        {!commerce && <div>
+                            <label htmlFor="Couleur">Choisir votre couleur</label>
+                            <input type='color' name="Couleur" value={color} onChange={handleColorChange}/>
+                            <button onClick={handleCouleurSave} disabled={client.Couleur===color} style={{borderColor: color}}>Sauvegarder</button>
+                        </div>}
+                    </article>
+                    {client && <QRCodeCanvas value={`${process.env.REACT_APP_URL}${client.id}/${client.email}`}/>}
+                </section>
+                 {commerce && <p>Ce qu'on veut faire avec la carte</p>}
+            </InfoContain>
+        )
+    }
 }
