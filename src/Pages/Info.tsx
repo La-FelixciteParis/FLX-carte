@@ -120,6 +120,8 @@ export const Info = ()=>{
             </InfoContain>
         )
     }else{
-        return <Loader/>
+        return <InfoContain>
+            <Loader/>
+        </InfoContain>
     }
 }
