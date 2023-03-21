@@ -6,6 +6,7 @@ import { useContext, useEffect,useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { ChangeColorUser, UserParIdentifiant } from "../API/Supabase/User"
 import { GetVillage } from "../API/Supabase/Village"
+import { Loader } from "../Components/Loader"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
 import { InfoContain } from "../Styles/Infos"
@@ -118,5 +119,7 @@ export const Info = ()=>{
                  {commerce && <p>Ce qu'on veut faire avec la carte</p>}
             </InfoContain>
         )
+    }else{
+        return <Loader/>
     }
 }
