@@ -9,7 +9,14 @@ const Rotate = keyframes`
     } 
 `
 
-export const Img = styled.img`
-    width: 30vw;
-    animation: ${Rotate} 2s infinite;
+export const Load = styled.div`
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex: 1;
+
+    img{
+        width: 30vw;
+        animation: ${Rotate} 2s infinite;
+    }
 `
