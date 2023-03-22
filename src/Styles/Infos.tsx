@@ -30,21 +30,22 @@ h1{
 }
 
 p{
-    transition: margin 0.5s;
-    margin-left: 0px;
-    padding: 5px;
+    transition: padding 0.5s;
+    padding: 5px 0;
     transition: border 0.8s;
     border-top: 2px solid #FFFFFF;
     border-bottom: 2px solid #FFFFFF;
 
     :hover{
-        margin-left:20px;
-        transition: border 0.5s;
-        transition: margin 0.5s;
-        border-top: 2px solid ${({color})=>color};
-        border-bottom: 2px solid ${({color})=>color};
-        border-left: 2px solid ${({color})=>color};
-        border-radius: 20px 0 0 20px;
+        @media (min-width: 500px){  
+            padding-left:20px;
+            transition: border 0.5s;
+            transition: padding 0.5s;
+            border-top: 2px solid ${({color})=>color};
+            border-bottom: 2px solid ${({color})=>color};
+            border-left: 2px solid ${({color})=>color};
+            border-radius: 20px 0 0 20px;
+        }
     }
 }
 
