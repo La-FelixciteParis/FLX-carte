@@ -16,13 +16,10 @@ padding:0 30px 10px;
 display:flex;
 flex-direction:column;
 
-@media (max-width: 500px){  
-    margin-top: 400px;
-}
-
 h1{
     text-align:center;
     align-self:center;
+    font-size:30px;
 
     &:after{
         content:"";
