@@ -20,13 +20,13 @@ h1{
     text-align:center;
     align-self:center;
 
-    &:after{
-        content:"";
-        display:block;
-        animation:${underline} 0.8s linear;
-        height:2px;
-        background:${({color})=>color};
-    }
+    // &:after{
+    //     content:"";
+    //     display:block;
+    //     animation:${underline} 0.8s linear;
+    //     height:2px;
+    //     background:${({color})=>color};
+    // }
 }
 
 p{
