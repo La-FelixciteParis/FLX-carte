@@ -101,7 +101,7 @@ export const Info = ()=>{
     if (client){
         return (
             <InfoContain color={color}>
-                <h1>{client.Prénom} {client.Nom}</h1>
+                <h1>{client.Prénom} {client.Nom} test</h1>
                 <section>
                     <article>
                         <p>{client.email}</p>
