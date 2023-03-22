@@ -19,8 +19,6 @@ flex-direction:column;
 h1{
     text-align:center;
     align-self:center;
-    height:30px;
-    width: 200px;
 
     &:after{
         content:"";
