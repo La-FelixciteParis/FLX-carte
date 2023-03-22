@@ -35,6 +35,7 @@ p{
     transition: border 0.8s;
     border-top: 2px solid #FFFFFF;
     border-bottom: 2px solid #FFFFFF;
+    height:30px;
 
     :hover{
         padding-left:20px;
