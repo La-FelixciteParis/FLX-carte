@@ -17,17 +17,23 @@ display:flex;
 flex-direction:column;
 
 h1{
-    p{
-        text-align:center;
-        align-self:center;
-        border:none;
+    text-align:center;
+    align-self:center;
 
+    p{
+        border:none;
+        
         &:after{
             content:"";
             display:block;
             animation:${underline} 0.8s linear;
             height:2px;
             background:${({color})=>color};
+        }
+
+        &:hover{
+            padding-left: 0;
+            border:none;
         }
     }
 }
