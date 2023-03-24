@@ -109,7 +109,7 @@ export const Info = ()=>{
                         {village && <p>Village: {village}</p>}
                         <p>Créer le {moment(client.created_at).format("DD/MM/YYYY")}</p>
                         {!commerce && <div>
-                            <p>Choisir votre couleur</p>
+                            <label htmlFor="Couleur">Choisir votre couleur</label>
                             <input type='color' name="Couleur" value={color} onChange={handleColorChange}/>
                             <button onClick={handleCouleurSave} disabled={client.Couleur===color} style={{borderColor: color}}>Sauvegarder</button>
                         </div>}
