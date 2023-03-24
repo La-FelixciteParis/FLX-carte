@@ -12,9 +12,9 @@ const Global=createGlobalStyle`
         box-sizing: border-box;
       }
     
-      body {
-        font-family: 'GothamLight', sans-serif;
-      }
+      // body {
+      //   font-family: 'GothamLight', sans-serif;
+      // }
 `
 
 export const Body=styled.div`

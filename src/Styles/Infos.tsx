@@ -20,21 +20,12 @@ h1{
     text-align:center;
     align-self:center;
 
-    p{
-        border:none;
-        
-        &:after{
-            content:"";
-            display:block;
-            animation:${underline} 0.8s linear;
-            height:2px;
-            background:${({color})=>color};
-        }
-
-        &:hover{
-            padding-left: 0;
-            border:none;
-        }
+    &:after{
+        content:"";
+        display:block;
+        animation:${underline} 0.8s linear;
+        height:2px;
+        background:${({color})=>color};
     }
 }
 
