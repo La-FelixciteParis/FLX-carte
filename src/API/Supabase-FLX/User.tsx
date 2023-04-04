@@ -24,3 +24,10 @@ export const LoginAdmin = async(body:UserInfoType)=>{
         return(error?.message);
     }
 }
+
+export const ValidDl = async(id:string)=>{
+    await supabase
+    .from('Identifiant')
+    .update({ "QrDl": true })
+    .eq("id", id)
+}
