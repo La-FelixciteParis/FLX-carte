@@ -1,6 +1,6 @@
 import { QRCodeCanvas } from "qrcode.react";
 import { QrpropsType } from "../Types/QR";
-import { ValidDl } from "../API/Supabase-FLX/User";
+import { ValidDl } from "../API/Supabase/User";
 import { QR } from "../Styles/Admin";
 
 export const QrCodeDl = ({id,COM_ACTnom,QrDl,onReload}:QrpropsType)=>{
