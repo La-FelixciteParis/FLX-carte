@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import { Input } from "../Components/Input"
 import { Form, FormContain } from "../Styles/Connect"
 import { AdminContain } from "../Styles/Admin"
-import { GetIds } from "../API/Supabase-FLX/User"
+import { GetIds, LoginAdmin } from "../API/Supabase-FLX/User"
 import { QrCodeDl } from "../Components/DlQRCode"
 import { QrpropsType } from "../Types/QR"
 
 export const Admin= () =>{
     const [valid,setValid] = useState<boolean>(false)
     const [mdp,setMdp] = useState<string>("")
+    const [email,setEmail] = useState<string>("")
     const [ids,setIds] = useState<[]|QrpropsType[]>([])
 
     useEffect(()=>{
@@ -22,16 +23,19 @@ export const Admin= () =>{
         }
     }
 
-    const HandleValidSubmit = (e:any) =>{
+    const HandleValidSubmit = async(e:any) =>{
         e.preventDefault()
-        
-        if(mdp===process.env.REACT_APP_ADMIN_PASSWORD){
-            setValid(true)
+        const body={
+            email,
+            password:mdp
         }
-    }
-
-    const HandleChange = (e:any)=>{
-        setMdp(e.target.value)
+        const data= await LoginAdmin(body)
+        if(typeof data === "object"){
+            setValid(true)
+        }else{
+            setValid(false)
+        }
+          
     }
 
     return (
@@ -45,7 +49,8 @@ export const Admin= () =>{
             :
             <FormContain>
                 <Form onSubmit={HandleValidSubmit}>
-                    <Input text="Mot de passe" type="password" onChange={HandleChange} />
+                    <Input text="Email" type="mail" onChange={(e:any)=>{setEmail(e.target.value)}}/>
+                    <Input text="Mot de passe" type="password" onChange={(e:any)=>{setMdp(e.target.value)}} />
                     <button type="submit">Valider</button>
                 </Form>
             </FormContain>
