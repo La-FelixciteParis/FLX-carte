@@ -6,6 +6,7 @@ import { Connect } from "./Pages/Connect";
 import { Info } from "./Pages/Info";
 import { LoginCommerçant } from "./Pages/LoginCommerçant";
 import Global from "./Styles/Général";
+import { Admin } from "./Pages/Admin";
 
 const App = () =>{
   return(
@@ -18,6 +19,7 @@ const App = () =>{
                 <Route path="/" element={<Connect/>}/>
                 <Route path="/User/:id" element={<Info/>}/>
                 <Route path="/Login" element={<LoginCommerçant/>}/>
+                <Route path="/Admin" element={<Admin/>}/>
               </Routes>
           </FormaPage>
           </CommerçantContextProvider>
