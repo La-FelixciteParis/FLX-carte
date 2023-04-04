@@ -11,7 +11,6 @@ import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
 import { InfoContain } from "../Styles/Infos"
 import { UserType } from "../Types/User"
-import { log } from "console"
 
 export const Info = ()=>{
 
