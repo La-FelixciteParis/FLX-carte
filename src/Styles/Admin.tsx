@@ -9,7 +9,7 @@ export const AdminContain=styled.div`
 
     section{
         display:flex;
-        width:100vw;
+        width:100%;
         overflow-x:scroll;
         gap:20px; 
     }
