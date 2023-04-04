@@ -19,7 +19,7 @@ export const AdminContain=styled.div`
 export const QR=styled.div`
     display:flex;
     flex-direction:column;
-    justify-content:space-around;
+    justify-content:space-between;
     height:250px;
     p{
         padding:5px;
