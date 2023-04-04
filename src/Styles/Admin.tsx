@@ -11,6 +11,7 @@ export const AdminContain=styled.div`
         display:flex;
         width:100%;
         overflow-x:auto;
+        scrollbar-width: none;
         gap:20px; 
     }
 `
