@@ -45,17 +45,13 @@ export const Admin= () =>{
                 <h2>Pas encore DL</h2>
                 <section>
                     {ids.map((id)=>{
-                        if(!id.QrDl){
-                            return <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>
-                        }
+                            return(!id.QrDl && <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>)              
                     })}
                 </section>
                 <h2>Déjà DL</h2>
                 <section>
                     {ids.map((id)=>{
-                        if(id.QrDl){
-                            return <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>
-                        }
+                            return (id.QrDl && <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>)
                     })}
                 </section>
             </AdminContain>
