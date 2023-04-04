@@ -1,16 +1,9 @@
 import { QRCodeCanvas } from "qrcode.react";
-import styled from "styled-components";
 import { QrpropsType } from "../Types/QR";
 import { ValidDl } from "../API/Supabase-FLX/User";
+import { QR } from "../Styles/Admin";
 
-const Dl = styled.p`
-  :hover{
-    cursor: pointer;
-    color:red;
-  };
-`
-
-export const QrCodeDl = ({id,COM_ACTnom}:QrpropsType)=>{
+export const QrCodeDl = ({id,COM_ACTnom,QrDl,onReload}:QrpropsType)=>{
   
   const downloadQR = async() => {
     const canvas = document.getElementById("QR") as any;
@@ -22,13 +15,14 @@ export const QrCodeDl = ({id,COM_ACTnom}:QrpropsType)=>{
     downloadLink.click();
     document.body.removeChild(downloadLink);
     await ValidDl(id)
+    onReload()
   };
 
   return(
-        <div>
+        <QR>
           <QRCodeCanvas value={`${process.env.REACT_APP_URL}${id}`} id="QR"/> 
-          <p>{COM_ACTnom}</p>
-          <Dl onClick={downloadQR}> Download QR </Dl>
-        </div>
+          <small>{COM_ACTnom}</small>
+          {!QrDl && <p onClick={downloadQR}> Download QR </p>}
+        </QR>
     )
 }
