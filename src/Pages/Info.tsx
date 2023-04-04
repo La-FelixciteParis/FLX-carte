@@ -11,6 +11,7 @@ import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
 import { InfoContain } from "../Styles/Infos"
 import { UserType } from "../Types/User"
+import { log } from "console"
 
 export const Info = ()=>{
 
@@ -75,14 +76,16 @@ export const Info = ()=>{
             const clientApi = await UserParIdentifiant(idUser) as any
             setClient(clientApi[0]);
             setColor(clientApi[0].Couleur)
+            
+            
         }
     }
 
     const Village=async ()=>{
         if(infoIdUser){
-
             const villageid = await GetVillage(infoIdUser[2]) as any
-            setVillage(villageid[0].Nom_Village)
+            
+            setVillage(villageid[0].nomVillage)
         }
     }
 

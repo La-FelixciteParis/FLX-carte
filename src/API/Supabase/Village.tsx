@@ -1,7 +1,12 @@
 import supabase from "./client"
 
 export const GetVillage= async (villageid:string)=>{
-    const { data: Village, error } = await supabase.from('Village').select('Nom_Village').eq('id',villageid)
+
+    let { data: Village, error } = await supabase
+  .from('Village')
+  .select('nomVillage')
+  .eq("id",villageid)
+    
     if(Village){
         return Village
     }else{
