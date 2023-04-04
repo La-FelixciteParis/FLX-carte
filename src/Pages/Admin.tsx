@@ -47,8 +47,6 @@ export const Admin= () =>{
                     {ids.map((id)=>{
                         if(!id.QrDl){
                             return <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>
-                        }else{
-                            return <></>
                         }
                     })}
                 </section>
@@ -57,8 +55,6 @@ export const Admin= () =>{
                     {ids.map((id)=>{
                         if(id.QrDl){
                             return <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>
-                        }else{
-                            return <></>
                         }
                     })}
                 </section>
