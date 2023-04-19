@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { CommerceContain, MenuBurger, Ul, Village, Visuel } from "../Styles/Commerce"
 import { CommerceParVillage, UserParIdentifiant } from "../API/Supabase/User"
 import { useContext, useEffect, useState } from "react"
@@ -27,6 +27,8 @@ export const Commerce = () =>{
 
     const {setIsCommerce}= useContext(UserContext) as any
 
+    const navigate=useNavigate()
+
     const BaseUrl= "https://api.mapbox.com/geocoding/v5/mapbox.places/"
 
     const markerIcon = new Icon({
@@ -44,7 +46,7 @@ export const Commerce = () =>{
         setIsCommerce(true)
         CommerceVillage()
         getVillage()
-    },[])
+    },[id])
 
     
 
@@ -106,9 +108,14 @@ export const Commerce = () =>{
     const MarkersVillage= async(commerce:CommerceInfoType)=>{
         if(commerce.adresse){
             const posMarker = await GetMarkers(commerce)
-            arrayMarker.push([posMarker[0],posMarker[1],commerce.COM_ACTnom,commerce.adresse])
+            arrayMarker.push([posMarker[0],posMarker[1],commerce.COM_ACTnom,commerce.adresse,commerce.id])
             setMarkers(arrayMarker)
         }
+    }
+
+    const handleAllezClick = (marker:string)=>{
+    navigate(`/Commerce/${marker}`)
+    setShowMenu(false)
     }
     
     if(!commerce){
@@ -202,7 +209,10 @@ export const Commerce = () =>{
                                 setActive(commerce.id)
                                 }}>
                                         <p>{commerce.métier}</p>
-                                        <small>{commerce.COM_ACTnom}</small>
+                                        <small>
+                                            {commerce.COM_ACTnom}
+                                            <button onClick={()=>handleAllezClick(commerce.id)}>Voir la page</button>
+                                        </small>
                                     </div>
                         })}
                         </div>

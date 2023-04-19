@@ -299,7 +299,18 @@ export const Village = styled.section`
                     transition:0.5s;
                     top:-35px;
                     left:24px;
-                    width:80%;
+                    width:90%;
+
+                    button{
+                        background:none;
+                        color: #00000050;
+                        border:none;
+                        diplay:block;
+
+                        &:hover{
+                            color: black;
+                        };
+                    };
 
                     &:before{
                         content:"↪";
