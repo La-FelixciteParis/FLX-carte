@@ -2,6 +2,7 @@ import { UserInfoType } from "../../Types/User"
 import supabase from "./client"
 
 export const UserParIdentifiant = async (id:string) =>{
+      
       const { data: Identifiant, error } = await supabase.from('Identifiant').select().eq('id',id)
       if(Identifiant){
         return Identifiant
@@ -98,4 +99,25 @@ export const GetIds = async() =>{
       .from('Identifiant')
       .update({ "QrDl": true })
       .eq("id", id)
+  }
+
+  export const UpdateDesc= async(text:string,id:string)=>{
+    await supabase.from('Identifiant').update({"Description":text}).eq("id",id)
+  }
+
+  export const CommerceParVillage=async(regex:RegExp)=>{
+    let {data:Commerces,error} = await supabase.from('Identifiant').select()
+
+    if(error){
+      console.log(error);
+      
+    }
+
+    const CommerceVillage = Commerces?.filter((commerce)=>{
+      return regex.test(commerce.id)
+    }
+    )
+
+    return(CommerceVillage);
+    
   }

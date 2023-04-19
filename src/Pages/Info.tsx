@@ -21,12 +21,13 @@ export const Info = ()=>{
     const [commerce,setCommerce]=useState<boolean>(true)
     const [color,setColor]=useState<string>("#000000")
 
-    const {idUser,setIdUser,infoIdUser,logoutId} = useContext(UserContext) as any
+    const {idUser,setIdUser,infoIdUser,logoutId,setIsCommerce} = useContext(UserContext) as any
     const {user,logoutCommerçant} = useContext(CommerçantContext) as any
 
     const navigate=useNavigate()
 
     useEffect(()=>{
+        setIsCommerce(false)
         const localToken = localStorage.getItem('TokenCommerçantFLX')
             if(!localToken){
                 setIdUser(id)

@@ -17,13 +17,13 @@ export const Connect = () =>{
     const [error,setError]=useState<string | null>(null)
     const [errorNumber, setErrorNumber]= useState<number>(0)
 
-    const {setIdUser,infoIdUser,idUser} = useContext(UserContext) as any
+    const {setIdUser,infoIdUser,idUser,setIsCommerce} = useContext(UserContext) as any
 
     const navigate = useNavigate()
 
-    // useEffect(()=>{
-    //     testAPI()
-    // },[])
+    useEffect(()=>{
+        setIsCommerce(false)
+    },[])
 
     // const testAPI = async()=>{
     //     await CreateToken()

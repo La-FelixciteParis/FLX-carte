@@ -13,7 +13,7 @@ export const Header = ()=>{
 
     const [color,setColor]= useState<string>(Klein)
 
-    const {infoIdUser,idUser,logoutId} = useContext(UserContext) as any
+    const {infoIdUser,idUser,isCommerce,logoutId} = useContext(UserContext) as any
     const {logoutCommerçant} = useContext(CommerçantContext) as any
 
     const navigate = useNavigate()
@@ -44,10 +44,18 @@ export const Header = ()=>{
         navigate("/Login")
     }
 
+    const handleHomeClick = () =>{
+        navigate("/")
+    } 
+
     return(
         <HeaderStyle color={color}>
-            <img src="/images/Felixcite-Logo.png " alt="Logo Félixcité" onClick={()=>navigate("/")}/>
-            {idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>: <ButtonStyle color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>}
+            <img src="/images/Felixcite-Logo.png " alt="Logo Félixcité" onClick={handleHomeClick}/>
+            {isCommerce ? <ButtonStyle color={color}><a href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Rejoindre</a></ButtonStyle>
+             : 
+            idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
+             : 
+            <ButtonStyle color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>}
         </HeaderStyle>
     )
 }

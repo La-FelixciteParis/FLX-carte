@@ -11,7 +11,7 @@ const RotateAnim=keyframes`
 
 export const HeaderStyle= styled.header`
     display:flex;
-    width:100vw;
+    width:100%;
     justify-Content: space-around;
     align-items: center;
     padding:10px;
@@ -24,6 +24,7 @@ export const HeaderStyle= styled.header`
     height: 72px;
     max-height: 72px;
     overflow: hidden;
+    z-index:2;
 
     img {
         animation: ${RotateAnim} 0.8s linear;
@@ -40,5 +41,15 @@ export const HeaderStyle= styled.header`
         transform: scale(1.1);
         transition: transform 1s;
         animation-delay: 0s;
+      }
+
+      a{
+        text-decoration: none;
+        color: #00000090;
+
+        :hover{
+            cursor:pointer;
+            color: #000000;
+        }
       }
 `

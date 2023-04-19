@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoginACT, UserIdParLogin } from "../API/Supabase/User"
 import { Input } from "../Components/Input"
@@ -8,14 +8,20 @@ import { CommerçantContext } from "../Context/Commercant"
 import { Form, FormContain } from "../Styles/Connect"
 import { jaune } from "../Styles/Couleur"
 import { ButtonStyle } from "../Styles/Général"
+import { UserContext } from "../Context/IdUser"
 
 export const LoginCommerçant = () =>{
     const [email,setEmail]= useState<string>('')
     const [password,setPassword]= useState<string>('')
 
     const {setToken} = useContext(CommerçantContext) as any
+    const {setIsCommerce} = useContext(UserContext) as any
 
     const navigate=useNavigate()
+
+    useEffect(()=>{
+        setIsCommerce(false)
+    },[])
 
     const handleLogSubmit = async(e:any)=>{
         e.preventDefault()

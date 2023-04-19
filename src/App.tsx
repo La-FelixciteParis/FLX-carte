@@ -7,6 +7,8 @@ import { Info } from "./Pages/Info";
 import { LoginCommerçant } from "./Pages/LoginCommerçant";
 import Global from "./Styles/Général";
 import { Admin } from "./Pages/Admin";
+import { Commerce } from "./Pages/Commerce";
+import 'leaflet/dist/leaflet.css'
 
 const App = () =>{
   return(
@@ -18,6 +20,7 @@ const App = () =>{
               <Routes>
                 <Route path="/" element={<Connect/>}/>
                 <Route path="/User/:id" element={<Info/>}/>
+                <Route path="/Commerce/:id" element={<Commerce/>}/>
                 <Route path="/Login" element={<LoginCommerçant/>}/>
                 <Route path="/Admin" element={<Admin/>}/>
               </Routes>
