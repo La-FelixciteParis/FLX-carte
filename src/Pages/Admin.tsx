@@ -58,13 +58,30 @@ export const Admin= () =>{
                 <h2>Pas encore DL</h2>
                 <section>
                     {ids.map((id)=>{
-                            return(!id.QrDl && <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>)              
+                            return(!id.QrDl && <QrCodeDl id={id.id} route="User/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>)              
                     })}
                 </section>
                 <h2>Déjà DL</h2>
                 <section>
                     {ids.map((id)=>{
-                            return (id.QrDl && <QrCodeDl id={id.id} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>)
+                            return (id.QrDl && <QrCodeDl id={id.id} route="USer/" QrDlCom={true} COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>)
+                    })}
+                </section>
+                <h2>CommercePasDl</h2>
+                <section>
+                {ids.map((id)=>{
+                        if(id.id.split("-")[1] === "COM"){
+                            return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>) 
+                        }
+                                         
+                    })}
+                </section>
+                <h2>CommerceDL</h2>
+                <section>
+                {ids.map((id)=>{
+                        if(id.id.split("-")[1] === "COM"){
+                            return(id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>) 
+                        }                  
                     })}
                 </section>
             </AdminContain>

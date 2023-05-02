@@ -3,7 +3,7 @@ import { QrpropsType } from "../Types/QR";
 import { ValidDl } from "../API/Supabase/User";
 import { QR } from "../Styles/Admin";
 
-export const QrCodeDl = ({id,COM_ACTnom,QrDl,onReload}:QrpropsType)=>{
+export const QrCodeDl = ({id,COM_ACTnom,QrDl,QrDlCom,onReload,route}:QrpropsType)=>{
   
   const downloadQR = async() => {
     const canvas = document.getElementById("QR") as any;
@@ -20,9 +20,10 @@ export const QrCodeDl = ({id,COM_ACTnom,QrDl,onReload}:QrpropsType)=>{
 
   return(
         <QR>
-          <QRCodeCanvas value={`${process.env.REACT_APP_URL}${id}`} id="QR"/> 
+          <QRCodeCanvas value={`${process.env.REACT_APP_URL}${route}${id}`} id="QR"/> 
           <small>{COM_ACTnom}</small>
           {!QrDl && <p onClick={downloadQR}> Download QR </p>}
+          {!QrDlCom && <p onClick={downloadQR}> Download QR </p>}
         </QR>
     )
 }
