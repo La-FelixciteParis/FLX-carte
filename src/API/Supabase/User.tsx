@@ -101,6 +101,13 @@ export const GetIds = async() =>{
       .eq("id", id)
   }
 
+  export const ValidDlCom = async(id:string)=>{
+    await supabase
+    .from('Identifiant')
+    .update({ "QrDlCom": true })
+    .eq("id", id)
+}
+
   export const UpdateDesc= async(text:string,id:string)=>{
     await supabase.from('Identifiant').update({"Description":text}).eq("id",id)
   }
