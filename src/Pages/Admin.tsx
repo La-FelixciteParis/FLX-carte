@@ -72,6 +72,8 @@ export const Admin= () =>{
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM"){
                             return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids}/>) 
+                        }else{
+                            return <></>
                         }
                                          
                     })}
@@ -81,7 +83,9 @@ export const Admin= () =>{
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM"){
                             return(id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id}/>) 
-                        }                  
+                        }else{
+                            return <></>
+                        }                 
                     })}
                 </section>
             </AdminContain>
