@@ -57,10 +57,10 @@ return user
 
 }
 
-export const ChangeColorUser = async (color:string,id:string)=>{
+export const ChangeColorUser = async (color:string,color2:string,textColor:string,id:string)=>{
   const { data, error } = await supabase
   .from('Identifiant')
-  .update({ 'Couleur': color })
+  .update({ 'Couleur': color,'CouleurSec':color2,'TextColor':textColor })
   .eq('id', id)
 
   if(error){

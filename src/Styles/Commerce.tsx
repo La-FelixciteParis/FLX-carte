@@ -255,7 +255,6 @@ export const Ul=styled.ul`
     display:flex;
     flex-wrap:wrap;
     gap:30px;
-    padding:0;
 
     a{
         img{
@@ -263,6 +262,20 @@ export const Ul=styled.ul`
             height:50px;
         }
     };
+
+    
+
+    .Plus{
+        margin:0;
+        padding:0;
+        width:50px;
+        height:50px;
+        background:Lightgray;
+        border-radius:50px;     
+        border: none;
+        text-align:center;
+        font-size:40px;
+    }
 `
 
 export const Village = styled.section`

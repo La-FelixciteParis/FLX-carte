@@ -1,13 +1,6 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { Couleur } from "../Types/Styles";
 
-const underline = keyframes`
-    0%{
-        width:0%;
-    }
-    100%{
-        width:100%;
-    }
-`
 
 export const InfoContain= styled.div`
 flex:1;
@@ -16,37 +9,29 @@ padding:0 30px 10px;
 display:flex;
 flex-direction:column;
 
+.Title{
+    margin-top:10px;
+    height:75px;
+    padding:10px;
+    background: ${({Primaire}:Couleur)=>Primaire}
+}
+
 h1{
     text-align:center;
     align-self:center;
+    margin:0;
+    color: ${({TextColor}:Couleur)=>TextColor}
+}
 
-    &:after{
-        content:"";
-        display:block;
-        animation:${underline} 0.8s linear;
-        height:2px;
-        background:${({color})=>color};
-    }
+h2{
+    text-align:center;
+    text-decoration: underline 2px solid ${({Secondaire}:Couleur)=>Secondaire}
 }
 
 p{
-    transition: padding 0.5s;
     padding: 5px 0;
-    transition: border 0.8s;
     border-top: 2px solid #FFFFFF;
     border-bottom: 2px solid #FFFFFF;
-
-    :hover{
-        @media (min-width: 500px){  
-            padding-left:20px;
-            transition: border 0.5s;
-            transition: padding 0.5s;
-            border-top: 2px solid ${({color})=>color};
-            border-bottom: 2px solid ${({color})=>color};
-            border-left: 2px solid ${({color})=>color};
-            border-radius: 20px 0 0 20px;
-        }
-    }
 }
 
 input{
@@ -58,12 +43,12 @@ input{
 
     ::-webkit-color-swatch {
         border-radius:50%;
-        border:none;
+        border:1px solid #00000020;
     }
 
     ::-moz-color-swatch {
         border-radius:50%;
-        border:none;
+        border:1px solid #00000020;
     }
 }
 
@@ -90,9 +75,28 @@ div{
 }
 
 article{
-    width:30vw;
+    width:300px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    .Img{
+        width:150px;
+    }
 
-    @media (max-width: 500px){
+    .Couleurs{
+        padding-left:30px;
+        flex-direction:column;
+        align-items:flex-start;
+
+        .Couleur{
+            width:180px;
+            justify-content: space-between;
+        }
+    }
+
+    
+
+    @media (max-width: 700px){
         width:90vw;
     }
 }
@@ -100,6 +104,7 @@ article{
 section{
     display: flex;
     justify-content:space-between;
+    flex-wrap:wrap-reverse;
 
     @media (max-width: 500px){
         flex-direction:column;
@@ -107,6 +112,33 @@ section{
         justify-content:center;
         align-items:center;
         gap: 5px;
+    }
+}
+
+.Gerance{
+    flex-direction:column;
+    align-items:flex-start;
+    width:250px;
+
+    div{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    @media (max-width: 700px){
+    align-items:center;
+    width:100%;
+    
+    div{
+        width:250px;
+    }
+    }
+}
+
+
+.Village{
+    @media (max-width:700px){
+        align-items:center;
     }
 }
 `
