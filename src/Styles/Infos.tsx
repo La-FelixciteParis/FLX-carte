@@ -74,6 +74,22 @@ div{
     }
 }
 
+.ImageSelect{
+    width:100%;
+    text-align:center;
+}
+
+.UploadButton{
+    width:100px;
+    border:2px solid ${({Secondaire}:Couleur)=>Secondaire};
+    cursor:pointer;
+
+    :hover{
+        background:${({Primaire}:Couleur)=>Primaire};
+        color:${({TextColor}:Couleur)=>TextColor};
+    }
+}
+
 article{
     width:300px;
     display:flex;
@@ -137,8 +153,17 @@ section{
 
 
 .Village{
+    flex-wrap:wrap;
+
+    h2{
+        width:100%;
+        text-align:left;
+    }
+
     @media (max-width:700px){
-        align-items:center;
+        h2{
+            text-align:center;
+        }
     }
 }
 `

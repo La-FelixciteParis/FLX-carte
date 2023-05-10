@@ -3,7 +3,7 @@
 import { QRCodeCanvas } from "qrcode.react"
 import { useContext, useEffect,useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ChangeColorUser, UserParIdentifiant } from "../API/Supabase/User"
+import { ChangeColorUser, UpdateImageUser, UserParIdentifiant } from "../API/Supabase/User"
 import { Loader } from "../Components/Loader"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
@@ -11,6 +11,8 @@ import { InfoContain } from "../Styles/Infos"
 import { UserType } from "../Types/User"
 import { Ul } from "../Styles/Commerce"
 import { ListEvenements } from "../Components/Evenements"
+import { Upload, donwload } from "../API/Supabase/Images"
+import { UploadLoad } from "../Components/UploadLoad"
 
 export const Info = ()=>{
 
@@ -21,6 +23,9 @@ export const Info = ()=>{
     const [primaire,setPrimaire]=useState<string>("#000000")
     const [secondaire,setSecondaire]=useState<string>("#000000")
     const [textColor,setTextColor]=useState<string>("#000000")
+    const [image,setImage]= useState<File>()
+    const [imageUrl,setImageUrl]=useState<string>('')
+    const [loadImage,setLoadImage]=useState<boolean>(false)
 
 
 
@@ -35,7 +40,16 @@ export const Info = ()=>{
             if(!localToken){
                 setIdUser(id)
             }
+
     },[])
+
+    useEffect(()=>{
+        
+        if(client?.Image){
+            const data =  donwload(client.Image)
+            setImageUrl(data.publicUrl);  
+        }
+    },[client])
 
     useEffect(()=>{
         if(user==="none"){
@@ -69,6 +83,7 @@ export const Info = ()=>{
     }
 
     const ClientFetch = async()=>{
+        setLoadImage(false)
         if(idUser){
             
             const clientApi = await UserParIdentifiant(idUser) as any
@@ -97,6 +112,27 @@ export const Info = ()=>{
             await ChangeColorUser(primaire,secondaire,textColor,client.id)
             ClientFetch()
         }
+    }
+
+    const handleUploadImage = async() =>{
+        
+        if(image && id){
+            setLoadImage(true)
+            const Data = await Upload(image)
+            const path=Data?.path
+            
+            {path && await UpdateImageUser(id,path)}
+            ClientFetch()
+        }
+    }
+
+    const handleFileChange = (e:any)=>{
+        const file = e.target.files[0];
+  const fileWithPath = new File([file], `public/${file.name}`, {
+    type: file.type,
+  });
+  setImage(fileWithPath);
+        
     }
 
     if (client){
@@ -129,7 +165,9 @@ export const Info = ()=>{
                         <h2>Votre Imagerie</h2>
 
                         <p>image par défaut:</p>
-                        {client.Image ? <img src={client.Image} alt="Vous" className="Img"/>: <img src="/Images/defaultCommerce.png" alt="defaut" className="Img"/> }
+                        {loadImage? <><UploadLoad/> <p>Chargement (celà peut durer quelque minutes)</p></>: <>{client.Image ? <img src={imageUrl} alt="Vous" className="Img"/>: <img src="/Images/defaultCommerce.png" alt="defaut" className="Img"/> }
+                        {!commerce && <><input type="file" onChange={handleFileChange} className="ImageSelect" />
+                        <button className="UploadButton" type="button" onClick={handleUploadImage}>valider</button></>}</>}
                         <p>Vos couleur:</p>
                         <div className="Couleurs">
                             <div className="Couleur">

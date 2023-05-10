@@ -278,9 +278,9 @@ export const Ul=styled.ul`
 
         .ajout{
             display:block;
-            width:40px;
+            width:30px;
             position:relative;
-            left:5px;
+            left:10px;
             height:2px;
             background: black;
         }

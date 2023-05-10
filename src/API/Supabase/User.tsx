@@ -128,3 +128,10 @@ export const GetIds = async() =>{
     return(CommerceVillage);
     
   }
+
+  export const UpdateImageUser= async(id:string,path:string)=>{
+    await supabase
+      .from('Identifiant')
+      .update({ "Image": path })
+      .eq("id", id)
+  }
