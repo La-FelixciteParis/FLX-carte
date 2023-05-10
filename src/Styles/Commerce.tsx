@@ -168,7 +168,9 @@ export const CommerceContain= styled.div`
 
                 ul{
                     margin:0;
-                    width:38%;
+                    li{
+                        display:flex;
+                    }
                     a{
                         color:#00000080;
                         text-decoration:none;
