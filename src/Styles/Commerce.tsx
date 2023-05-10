@@ -275,6 +275,19 @@ export const Ul=styled.ul`
         border: none;
         text-align:center;
         font-size:40px;
+
+        .ajout{
+            display:block;
+            width:40px;
+            position:relative;
+            left:5px;
+            height:2px;
+            background: black;
+        }
+
+        .vertical{
+            transform:rotate(90deg);
+        }
     }
 `
 

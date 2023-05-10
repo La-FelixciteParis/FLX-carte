@@ -121,7 +121,7 @@ export const Info = ()=>{
                             {client.Instagram && <a target="_blank" rel="noreferrer" href={client.Instagram}><img src="/Images/insta.png" alt="Instagram"/></a>}   
                             {client.TikTok && <a target="_blank" rel="noreferrer" href={client.TikTok}><img src="/Images/tiktok.png" alt="TikTok"/></a>}  
                             {client.GoogleBusiness && <a target="_blank" rel="noreferrer" href={client.GoogleBusiness}><img src="/Images/GoogleBusiness.png" alt="GoogleBusiness"/></a>}
-                            {!commerce && <button className="Plus">+</button> }
+                            {!commerce && <button className="Plus"> <span className="ajout"></span><span className="ajout vertical"></span> </button> }
                         </Ul>
                     </article>
 
