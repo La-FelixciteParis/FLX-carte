@@ -74,6 +74,18 @@ div{
     }
 }
 
+.Lien{
+    input{
+        width:100px;
+        height:25px;
+        border:1px solid black;
+    }
+
+    button{
+        cursor:pointer;
+    }
+}
+
 .ImageSelect{
     width:100%;
     text-align:center;

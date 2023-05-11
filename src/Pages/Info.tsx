@@ -155,6 +155,11 @@ export const Info = ()=>{
         
     }
 
+    const handleAnnuleClick = ()=>{
+        setPlusReseaux(false)
+        setPlus(false)
+    }
+
     if (client){
         return (
             <InfoContain Primaire={primaire} Secondaire={secondaire} TextColor={textColor}>
@@ -179,12 +184,12 @@ export const Info = ()=>{
                             {client.GoogleBusiness && <a target="_blank" rel="noreferrer" href={client.GoogleBusiness}><img src="/Images/GoogleBusiness.png" alt="GoogleBusiness"/></a>}
                             {!commerce && 
                                 plusReseaux ? 
-                                    <div>
+                                    <div className="Lien">
                                         <Input type="Text" text="Lien" onChange={(e:any)=>setLien(e.target.value)} />
                                         <button onClick={handleValidLien}>Valider</button>
+                                        <button onClick={handleAnnuleClick}>annuler</button>
                                     </div>
-                                    :
-                                    
+                                :
                                     plus ? 
                                         <div>
                                             <select onChange={(e:any)=>{setAddReseaux(e.target.value)}}>
@@ -197,10 +202,12 @@ export const Info = ()=>{
                                                 <option value="GoogleBusiness">GoogleBusiness</option>
                                             </select>
                                             <button onClick={handleValidReseaux}>Valider</button>
+                                            <button onClick={handleAnnuleClick}>annuler</button>
                                         </div> 
                                     :
-
-                                        <button className="Plus" onClick={handlePlusClick}> <span className="ajout"></span><span className="ajout vertical"></span> </button> }
+                                        <button className="Plus" onClick={handlePlusClick}> <span className="ajout"></span><span className="ajout vertical"></span> </button> 
+                                
+                            }
                         </Ul>
                     </article>
 
