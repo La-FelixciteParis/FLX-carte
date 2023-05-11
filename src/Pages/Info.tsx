@@ -88,15 +88,12 @@ export const Info = ()=>{
     const ClientFetch = async()=>{
         setLoadImage(false)
         if(idUser){
-            console.log(idUser);
             
             const clientApi = await UserParIdentifiant(idUser) as any
             setClient(clientApi[0]);
-            console.log(clientApi[0]);
-            
-            // setPrimaire(clientApi[0].Couleur)
-            // setSecondaire(clientApi[0].CouleurSec)
-            // setTextColor(clientApi[0].TextColor)
+            setPrimaire(clientApi[0].Couleur)
+            setSecondaire(clientApi[0].CouleurSec)
+            setTextColor(clientApi[0].TextColor)
             
         }
     }
