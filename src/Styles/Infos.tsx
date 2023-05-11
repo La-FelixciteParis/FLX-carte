@@ -56,7 +56,8 @@ button{
     background:transparent;
     border-radius: 50px;
     padding:5px;
-    border: 2px solid;
+    border:2px solid ${({Secondaire}:Couleur)=>Secondaire};
+    cursor:pointer;
 
     :disabled{
         border:none;
@@ -80,10 +81,6 @@ div{
         height:25px;
         border:1px solid black;
     }
-
-    button{
-        cursor:pointer;
-    }
 }
 
 .ImageSelect{
@@ -93,8 +90,6 @@ div{
 
 .UploadButton{
     width:100px;
-    border:2px solid ${({Secondaire}:Couleur)=>Secondaire};
-    cursor:pointer;
 
     :hover{
         background:${({Primaire}:Couleur)=>Primaire};

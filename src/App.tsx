@@ -9,6 +9,9 @@ import Global from "./Styles/Général";
 import { Admin } from "./Pages/Admin";
 import { Commerce } from "./Pages/Commerce";
 import 'leaflet/dist/leaflet.css'
+import { Home } from "./Pages/Home";
+import { Village } from "./Pages/Village";
+import { Evenement } from "./Pages/Evenement";
 
 const App = () =>{
   return(
@@ -18,10 +21,13 @@ const App = () =>{
           <CommerçantContextProvider>
             <FormaPage>
               <Routes>
-                <Route path="/" element={<Connect/>}/>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/Connect" element={<Connect/>}/>
                 <Route path="/User/:id" element={<Info/>}/>
                 <Route path="/Commerce/:id" element={<Commerce/>}/>
                 <Route path="/Login" element={<LoginCommerçant/>}/>
+                <Route path="/Village" element={<Village/>}/>
+                <Route path="/Evenement/:id" element={<Evenement/>}/>
                 <Route path="/Admin" element={<Admin/>}/>
               </Routes>
           </FormaPage>
