@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { GetEvenement } from "../API/Supabase/Evenement"
 import { EvenementInfo, EvenementProps } from "../Types/Evenement"
+import { EvenementList } from "./Evenement"
+import { EvenementsContain } from "../Styles/Evenement"
 
 export const ListEvenements = ({Villageid}:EvenementProps)=>{
 
@@ -17,9 +19,11 @@ export const ListEvenements = ({Villageid}:EvenementProps)=>{
         setEvenement(Data);
     }
 
-    return <div>
+    return <EvenementsContain>
+            <div className="Evenements">
             {evenements.map(evenement=>{
-                return <p key={evenement.description}>{evenement.description}</p>
+                return <EvenementList evenement={evenement} key={evenement.id}/>
             })}
-        </div>
+            </div>
+        </EvenementsContain>
 }
