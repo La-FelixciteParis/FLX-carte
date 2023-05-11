@@ -88,6 +88,7 @@ export const Info = ()=>{
     const ClientFetch = async()=>{
         setLoadImage(false)
         if(idUser){
+            console.log(idUser);
             
             const clientApi = await UserParIdentifiant(idUser) as any
             setClient(clientApi[0]);
