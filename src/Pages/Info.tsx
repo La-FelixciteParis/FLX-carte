@@ -3,7 +3,7 @@
 import { QRCodeCanvas } from "qrcode.react"
 import { useContext, useEffect,useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ChangeColorUser, UpdateImageUser, UserParIdentifiant } from "../API/Supabase/User"
+import { ChangeColorUser, UpdateImageUser, UpdateReseaux, UserParIdentifiant } from "../API/Supabase/User"
 import { Loader } from "../Components/Loader"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
@@ -13,6 +13,7 @@ import { Ul } from "../Styles/Commerce"
 import { ListEvenements } from "../Components/Evenements"
 import { Upload, donwload } from "../API/Supabase/Images"
 import { UploadLoad } from "../Components/UploadLoad"
+import { Input } from "../Components/Input"
 
 export const Info = ()=>{
 
@@ -26,8 +27,10 @@ export const Info = ()=>{
     const [image,setImage]= useState<File>()
     const [imageUrl,setImageUrl]=useState<string>('')
     const [loadImage,setLoadImage]=useState<boolean>(false)
-
-
+    const [plus,setPlus]=useState<boolean>(false)
+    const [addReseaux,setAddReseaux]=useState<string>('')
+    const [plusReseaux,setPlusReseaux]=useState<boolean>(false)
+    const [lien,setLien]=useState<string>('')
 
     const {idUser,setIdUser,infoIdUser,logoutId,setIsCommerce} = useContext(UserContext) as any
     const {user,logoutCommerçant} = useContext(CommerçantContext) as any
@@ -121,7 +124,7 @@ export const Info = ()=>{
             const Data = await Upload(image)
             const path=Data?.path
             
-            {path && await UpdateImageUser(id,path)}
+            path && await UpdateImageUser(id,path)
             ClientFetch()
         }
     }
@@ -132,6 +135,23 @@ export const Info = ()=>{
     type: file.type,
   });
   setImage(fileWithPath);
+        
+    }
+
+    const handlePlusClick = () =>{
+        setPlus(true)
+    }
+
+    const handleValidReseaux = () =>{
+        setPlusReseaux(true)
+        
+    }
+
+    const handleValidLien = async()=>{
+        await UpdateReseaux(idUser,addReseaux,lien)
+        setPlusReseaux(false)
+        setPlus(false)
+        ClientFetch()
         
     }
 
@@ -157,7 +177,30 @@ export const Info = ()=>{
                             {client.Instagram && <a target="_blank" rel="noreferrer" href={client.Instagram}><img src="/Images/insta.png" alt="Instagram"/></a>}   
                             {client.TikTok && <a target="_blank" rel="noreferrer" href={client.TikTok}><img src="/Images/tiktok.png" alt="TikTok"/></a>}  
                             {client.GoogleBusiness && <a target="_blank" rel="noreferrer" href={client.GoogleBusiness}><img src="/Images/GoogleBusiness.png" alt="GoogleBusiness"/></a>}
-                            {!commerce && <button className="Plus"> <span className="ajout"></span><span className="ajout vertical"></span> </button> }
+                            {!commerce && 
+                                plusReseaux ? 
+                                    <div>
+                                        <Input type="Text" text="Lien" onChange={(e:any)=>setLien(e.target.value)} />
+                                        <button onClick={handleValidLien}>Valider</button>
+                                    </div>
+                                    :
+                                    
+                                    plus ? 
+                                        <div>
+                                            <select onChange={(e:any)=>{setAddReseaux(e.target.value)}}>
+                                                <option value=''>Choisir</option>
+                                                <option value="Linkedin">Linkedin</option>
+                                                <option value="Twitter">Twitter</option>
+                                                <option value="Facebook">Facebook</option>
+                                                <option value="Instagram">Instagram</option>
+                                                <option value="TikTok">TikTok</option>
+                                                <option value="GoogleBusiness">GoogleBusiness</option>
+                                            </select>
+                                            <button onClick={handleValidReseaux}>Valider</button>
+                                        </div> 
+                                    :
+
+                                        <button className="Plus" onClick={handlePlusClick}> <span className="ajout"></span><span className="ajout vertical"></span> </button> }
                         </Ul>
                     </article>
 

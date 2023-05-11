@@ -135,3 +135,10 @@ export const GetIds = async() =>{
       .update({ "Image": path })
       .eq("id", id)
   }
+
+  export const UpdateReseaux=async(id:string,column:string,lien:string)=>{
+    await supabase
+    .from('Identifiant')
+    .update({[column]:lien})
+    .eq("id",id)
+  }
