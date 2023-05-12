@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import { Klein } from "./Couleur";
+import { Principal } from "./Couleur";
+import { Couleur } from "../Types/Styles";
 
 export const WidthUp = keyframes`
     0%{
@@ -111,6 +112,22 @@ export const CommerceContain= styled.div`
     min-height:80vh;
     display:flex;
 
+    h1{
+        padding:5px;
+        background:${({Primaire}:Couleur)=>Primaire};
+        color:${({TextColor}:Couleur)=>TextColor};
+    }
+
+    .Village{
+        cursor:pointer;
+        border-left: 2px solid ${({Secondaire}:Couleur)=>Secondaire};
+        padding-left: 5px; 
+
+        :hover{
+            text-decoration:underline 2px ${({Secondaire}:Couleur)=>Secondaire};
+        }
+    }
+
     .hidden{
         animation: ${WidthDown} 0.5s forwards;
         padding:0;
@@ -178,7 +195,7 @@ export const CommerceContain= styled.div`
                         &:after{
                             content:"";
                             display:block;
-                            background:${({color})=>color};
+                            background:${({Primaire}:Couleur)=>Primaire};
                             width:0;
                             height:2px;
                             animation: ${UnderlineAnimEnd} 0.5s forwards;
@@ -231,7 +248,7 @@ export const Visuel=styled.div`
         &:after{
             content:"";
             display:block;
-            background:${({color})=>color};
+            background:${({Primaire}:Couleur)=>Primaire};
             width:0;
             transition:0.5s;
             height:2px;
@@ -348,7 +365,7 @@ export const Village = styled.section`
 
                 :hover{
 
-                    color:${Klein};
+                    color:${Principal};
 
                     small{
                         opacity:1;

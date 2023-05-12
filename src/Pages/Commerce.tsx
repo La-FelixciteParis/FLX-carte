@@ -4,7 +4,7 @@ import { CommerceContain, MenuBurger, Ul, Village, Visuel } from "../Styles/Comm
 import { CommerceParVillage, UserParIdentifiant } from "../API/Supabase/User"
 import { useContext, useEffect, useState } from "react"
 import { Loader } from "../Components/Loader"
-import { CommerceInfoType } from "../Types/User"
+import { UserType } from "../Types/User"
 import { UserContext } from "../Context/IdUser"
 import { MapContainer,TileLayer,Marker,Popup } from "react-leaflet"
 import { Icon } from "leaflet"
@@ -16,9 +16,9 @@ export const Commerce = () =>{
 
     const {id} = useParams() as any
 
-    const [commerce,setCommerce] = useState<null|CommerceInfoType> (null)
+    const [commerce,setCommerce] = useState<null|UserType> (null)
     const [showMenu,setShowMenu] = useState<boolean>(false)
-    const [commerces,setCommerces] = useState<[]|CommerceInfoType[]>([])
+    const [commerces,setCommerces] = useState<[]|UserType[]>([])
     const [monVillage,setMonVillage] = useState<string>("")
     const [position,setPosition] = useState<any>(null)
     const [markers,setMarkers]=useState<any>([])
@@ -88,7 +88,7 @@ export const Commerce = () =>{
         setMonVillage(data[0].nomVillage)   
     }
 
-    const GetMarkers= async(commerce:CommerceInfoType)=>{
+    const GetMarkers= async(commerce:UserType)=>{
         
         const address = commerce.adresse
         const data= await fetch(`${BaseUrl}${address}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`)
@@ -98,7 +98,7 @@ export const Commerce = () =>{
         
     }
 
-    const ComMarker= async(commerce:CommerceInfoType)=>{
+    const ComMarker= async(commerce:UserType)=>{
         if(commerce){
             const Position= await GetMarkers(commerce)
             setPosition(Position)
@@ -106,7 +106,7 @@ export const Commerce = () =>{
 
     }
 
-    const MarkersVillage= async(commerce:CommerceInfoType)=>{
+    const MarkersVillage= async(commerce:UserType)=>{
         if(commerce.adresse){
             const posMarker = await GetMarkers(commerce)
             arrayMarker.push([posMarker[0],posMarker[1],commerce.COM_ACTnom,commerce.adresse,commerce.id])
@@ -128,7 +128,7 @@ export const Commerce = () =>{
         <>
         <MenuBurger><button className={`${showMenu && "show_bar"}`} onClick={HandleBurgerClick}><span/></button></MenuBurger>
 
-        <CommerceContain color={commerce.Couleur}>
+        <CommerceContain Primaire={commerce.Couleur} Secondaire={commerce.CouleurSec} TextColor={commerce.TextColor}>
 
             <section className={`${showMenu ? "hidden": "none"}`}>
                 <article className="infos">
@@ -147,6 +147,7 @@ export const Commerce = () =>{
                         <p>Gérant: {commerce.Prénom} {commerce.Nom}</p>
                         {commerce.Description && commerce.Description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}
                         {commerce.adresse && <p>{commerce.adresse}</p>}
+                        <p className="Village" onClick={()=>{navigate(`/Village?Village:${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
                         <h2>Contacts:</h2>
                         <ul>
                             {commerce.email && <li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li>}

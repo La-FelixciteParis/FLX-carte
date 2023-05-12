@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../Context/IdUser"
-import { bleu, jaune, Klein, vert } from "../Styles/Couleur"
+import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
 import { FooterStyle } from "../Styles/Footer"
 
 export const Footer = ()=>{
 
     const target = "_blank"
 
-    const [color,setColor]= useState<string>(Klein)
+    const [color,setColor]= useState<string>(Principal)
 
     const {infoIdUser} = useContext(UserContext) as any
 
@@ -22,7 +22,7 @@ export const Footer = ()=>{
                 setColor(vert)
             }
         }else{
-            setColor(Klein)
+            setColor(Principal)
         }
     },[infoIdUser])
 

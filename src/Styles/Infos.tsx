@@ -165,6 +165,7 @@ section{
     h2{
         width:100%;
         text-align:left;
+        cursor:pointer;
     }
 
     @media (max-width:700px){

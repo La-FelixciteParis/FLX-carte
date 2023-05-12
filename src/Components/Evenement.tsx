@@ -27,7 +27,7 @@ export const EvenementList = ({evenement}:Evenement) =>{
     return <EvenementContain backgroundUrl={image} Foncé={evenement.noAffiche} onClick={handleEvenementClick}>
         {evenement.noAffiche && <><h3>{evenement.nom}</h3>
         <div className="Description">
-            {evenement.description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}
+            {evenement.description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p className="InfoEvenement" key={id}>{line}</p>}})}
         </div>
         <div>
             <small> du {evenement.dateDébut}</small>

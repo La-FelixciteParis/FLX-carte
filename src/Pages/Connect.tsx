@@ -7,7 +7,7 @@ import { UserParIdentifiant } from "../API/Supabase/User"
 import { Input } from "../Components/Input"
 import { UserContext } from "../Context/IdUser"
 import { ErrorContain, Form, FormContain } from "../Styles/Connect"
-import { Klein } from "../Styles/Couleur"
+import { Principal } from "../Styles/Couleur"
 import { ButtonStyle } from "../Styles/Général"
 
 export const Connect = () =>{
@@ -70,7 +70,7 @@ export const Connect = () =>{
             <Form onSubmit={handleSubmit}>
                 <Input text="Email" type="text" onChange={(e:any)=>setEmail(e.target.value)}/>
                 <Input text="Identifiant" type="text" onChange={(e:any)=>setId(e.target.value)}/>
-                <ButtonStyle color={Klein}>Valider</ButtonStyle>
+                <ButtonStyle color={Principal}>Valider</ButtonStyle>
             </Form>
             <div>
                 {error &&

@@ -257,7 +257,7 @@ export const Info = ()=>{
                 </div>
 
                 <section className="Village">
-                    <h2>Actualité de votre village:</h2>
+                    <h2 onClick={()=>{navigate(`/Village?Village:${infoIdUser[2]}`)}}>Actualité de votre village:</h2>
                     <ListEvenements Villageid={infoIdUser[2]}/>
                 </section>
             </InfoContain>

@@ -4,14 +4,14 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
-import { bleu, jaune, Klein, vert } from "../Styles/Couleur"
+import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
 import { ButtonStyle } from "../Styles/Général"
 import { HeaderStyle } from "../Styles/Header"
 
 export const Header = ()=>{
     
 
-    const [color,setColor]= useState<string>(Klein)
+    const [color,setColor]= useState<string>(Principal)
 
     const {infoIdUser,idUser,isCommerce,logoutId} = useContext(UserContext) as any
     const {logoutCommerçant} = useContext(CommerçantContext) as any
@@ -30,7 +30,7 @@ export const Header = ()=>{
                 setColor(vert)
             }
         }else{
-            setColor(Klein)
+            setColor(Principal)
         }
     },[infoIdUser])
 

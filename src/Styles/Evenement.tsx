@@ -12,7 +12,7 @@ export const EvenementContain = styled.div`
     justify-content:space-around;
     cursor:pointer;
 
-    p{
+    .InfoEvenement{
         border:none;
         margin:5px;
     }
