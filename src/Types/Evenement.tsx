@@ -10,15 +10,16 @@ export interface EvenementContact{
 
 export interface EvenementInfo{
     id:number,
-    description?:string,
-    dateDébut?:string,
-    dateFin?:string,
-    nom?:string,
-    villageId?:string,
-    Lieu?:string,
-    Type?:string,
-    Contacts?:EvenementContact [],
-    Image?:string,
+    description:string,
+    dateDébut:string,
+    dateFin:string,
+    nom:string,
+    villageId:string,
+    Lieu:string,
+    Type:string,
+    Contacts:EvenementContact [],
+    Image:string,
+    noAffiche:boolean
 }
 
 export interface Evenement{
