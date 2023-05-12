@@ -24,10 +24,12 @@ export const EvenementContain = styled.div`
 
 export const EvenementsContain = styled.div`
 
-    max-width:100%;
-
+    min-width:100%;
     .Evenements{
         overflow-x:scroll;
+        flex-direction: row;
+        gap:20px;
         flex-wrap:nowrap;
+        width:100%;
     }
 `

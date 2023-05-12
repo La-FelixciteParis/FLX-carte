@@ -9,6 +9,7 @@ import { UserContext } from "../Context/IdUser"
 import { MapContainer,TileLayer,Marker,Popup } from "react-leaflet"
 import { Icon } from "leaflet"
 import { GetVillage } from "../API/Supabase/Village"
+import { ListEvenements } from "../Components/Evenements"
 
 
 export const Commerce = () =>{
@@ -166,36 +167,7 @@ export const Commerce = () =>{
                 <h2 style={{display:`${showMenu ? "none" : "block"}`}}>Actualités</h2>
 
                 <article>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
-                    <div style={{minWidth: "150px",height: "200px", background:"blue"}}></div>
+                    <ListEvenements Villageid={commerce.id.split("-")[2]}/> 
                 </article>
             </section>
             <Village className={`${showMenu && "show" }`}>
