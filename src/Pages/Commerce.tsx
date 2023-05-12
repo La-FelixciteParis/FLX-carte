@@ -147,7 +147,7 @@ export const Commerce = () =>{
                         <p>Gérant: {commerce.Prénom} {commerce.Nom}</p>
                         {commerce.Description && commerce.Description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}
                         {commerce.adresse && <p>{commerce.adresse}</p>}
-                        <p className="Village" onClick={()=>{navigate(`/Village?Village:${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
+                        <p className="Village" onClick={()=>{navigate(`/Village?Village=${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
                         <h2>Contacts:</h2>
                         <ul>
                             {commerce.email && <li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li>}
