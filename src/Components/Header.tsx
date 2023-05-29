@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
 import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
@@ -12,9 +12,14 @@ export const Header = ()=>{
     
 
     const [color,setColor]= useState<string>(Principal)
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const [scroll,setScroll]=useState<boolean>(false)
+
 
     const {infoIdUser,idUser,isCommerce,logoutId} = useContext(UserContext) as any
     const {logoutCommerçant} = useContext(CommerçantContext) as any
+
+
 
     const navigate = useNavigate()
 
@@ -48,9 +53,35 @@ export const Header = ()=>{
         navigate("/")
     } 
 
+    const location= useLocation()
+
+    useEffect(()=>{
+    if(location.pathname.split("/")[1]=== "Commerce"){
+        const handleScroll = () => {
+            setScrollTop(window.scrollY);
+          };
+      
+          window.addEventListener("scroll", handleScroll);
+    };
+    
+    },[])
+
+    useEffect(()=>{
+        
+        const height = window.innerHeight
+        
+        
+        if(scrollTop>=height-20){
+            setScroll(true);   
+        }else{
+            setScroll(false)
+        }
+        
+    },[scrollTop])
+
     return(
-        <HeaderStyle color={color}>
-            <img src="/images/Felixcite-Logo.png " alt="Logo Félixcité" onClick={handleHomeClick}/>
+        <HeaderStyle color={color} headerAppear={scroll}>
+            <img src={scroll ? "/images/Felixcite-Logo.png " : "/images/Felixcite-Logo-blanc.png"} alt="Logo Félixcité" onClick={handleHomeClick}/>
             {isCommerce ? <ButtonStyle color={color}><a href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Rejoindre</a></ButtonStyle>
              : 
             idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>

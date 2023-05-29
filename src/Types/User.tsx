@@ -54,6 +54,8 @@ export interface UserType{
     id: string,
     ​
     métier: string,
+
+    Artisant?:boolean,
 }
 
 export interface UserACTType{

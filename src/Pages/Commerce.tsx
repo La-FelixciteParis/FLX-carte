@@ -10,6 +10,7 @@ import { MapContainer,TileLayer,Marker,Popup } from "react-leaflet"
 import { Icon } from "leaflet"
 import { GetVillage } from "../API/Supabase/Village"
 import { ListEvenements } from "../Components/Evenements"
+import { donwload } from "../API/Supabase/Images"
 
 
 export const Commerce = () =>{
@@ -23,6 +24,9 @@ export const Commerce = () =>{
     const [position,setPosition] = useState<any>(null)
     const [markers,setMarkers]=useState<any>([])
     const [active,setActive] = useState<string>(id)
+    const [image,setImage] = useState<string>('/Images/defaultCommerce.png')
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const [scroll,setScroll]=useState<boolean>(false)
 
     const arrayMarker=[] as any
 
@@ -42,6 +46,28 @@ export const Commerce = () =>{
         iconSize:[15,30]
       })
 
+      useEffect(()=>{
+            const handleScroll = () => {
+                setScrollTop(window.scrollY);
+              };
+          
+              window.addEventListener("scroll", handleScroll);
+        
+        },[])
+
+        useEffect(()=>{
+        
+            const height = window.innerHeight
+            
+            
+            if(scrollTop>=height-20){
+                setScroll(true);   
+            }else{
+                setScroll(false)
+            }
+            
+        },[scrollTop])
+
     useEffect(()=>{
         GetCommerce()
         setIsCommerce(true)
@@ -54,6 +80,11 @@ export const Commerce = () =>{
     useEffect(()=>{
             if(commerce){
                 ComMarker(commerce)
+                
+                if(commerce.Image){
+                    const image = donwload(commerce.Image)
+                    setImage(image.publicUrl)
+                }
             }
     },[commerce])
 
@@ -80,6 +111,7 @@ export const Commerce = () =>{
         const IdsCommerces = new RegExp(`FLX-(ACT|COM)-${VillageId}-(ACPB|ADCFSA|HAPCO|VILFAI|FLX)-\\d{4}`);
         const data = await CommerceParVillage(IdsCommerces) as any
         setCommerces(data)
+        
     }
 
     const getVillage = async()=>{
@@ -126,34 +158,28 @@ export const Commerce = () =>{
 
     return (
         <>
-        <MenuBurger><button className={`${showMenu && "show_bar"}`} onClick={HandleBurgerClick}><span/></button></MenuBurger>
-
+        <MenuBurger headerAppear={scroll}><button className={`${showMenu && "show_bar"}`} onClick={HandleBurgerClick}><span/></button></MenuBurger>
+        <Visuel backgroundUrl={image} color={commerce.TextColor} colorSec={commerce.CouleurSec}>
+            <h1>{commerce.COM_ACTnom}</h1>
+        </Visuel>
         <CommerceContain Primaire={commerce.Couleur} Secondaire={commerce.CouleurSec} TextColor={commerce.TextColor}>
-
             <section className={`${showMenu ? "hidden": "none"}`}>
-                <article className="infos">
-                    {
-                    commerce.SiteWeb ? <Visuel color={commerce.Couleur}><iframe src={commerce.SiteWeb} title={`Site Web de ${commerce.COM_ACTnom}`}/> <small><a href={commerce.SiteWeb} target="_blank" rel="noreferrer">Allez directement voir</a></small></Visuel>
-                     : 
-                    commerce.Vidéo ? <Visuel ><video controls><source src={commerce.Vidéo} type="video.mp4"></source></video></Visuel>
-                     : 
-                    commerce.Image ? <Visuel><img src={commerce.Image} alt="Visuel Commerce"/></Visuel>
-                     : 
-                    <Visuel><img src="/Images/defaultCommerce.png" alt="défaut visuel Commerce"/></Visuel>
-                    }
 
-                    <div>
-                        <h1>{commerce.COM_ACTnom}</h1>
-                        <p>Gérant: {commerce.Prénom} {commerce.Nom}</p>
-                        {commerce.Description && commerce.Description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}
+                <h2>{commerce.Artisant && "Artisant"} {commerce.métier}</h2>
+
+                <article className="infos">
+                    
+                    <div className="InfoCom">
                         {commerce.adresse && <p>{commerce.adresse}</p>}
                         <p className="Village" onClick={()=>{navigate(`/Village?Village=${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
-                        <h2>Contacts:</h2>
+                        
                         <ul>
-                            {commerce.email && <li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li>}
-                            {commerce.Tel && <li>{commerce.Tel}</li>}
+                            <li>Gérant: {commerce.Prénom} {commerce.Nom}</li> <br/>
+                            {commerce.email && <><li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li><br/></>}
+                            {commerce.Tel && <><li>{commerce.Tel}</li><br/></>}
+                            <li>{commerce.SiteWeb && <a target="_blank" rel="noreferrer" href={commerce.SiteWeb}>Plus d'infos sur le commerce</a>}</li>
                         </ul>
-                        <h2>liste des réseaux sociaux:</h2>
+
                         <Ul>
                             {commerce.Linkedin && <a target="_blank" rel="noreferrer" href={commerce.Linkedin}><img src="/Images/LinkedIn_icon_circle.svg.png" alt="Linkedin"/></a>}
                             {commerce.Twitter && <a target="_blank" rel="noreferrer" href={commerce.Twitter}><img src="/Images/twitter.png" alt="Twitter" /></a>}
@@ -163,10 +189,11 @@ export const Commerce = () =>{
                             {commerce.GoogleBusiness && <a target="_blank" rel="noreferrer" href={commerce.GoogleBusiness}><img src="/Images/GoogleBusiness.png" alt="GoogleBusiness"/></a>}   
                         </Ul>
                     </div>
+                    <div>
+                        {commerce.Description && commerce.Description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}
+                    </div>
                 </article>
-
-                <h2 style={{display:`${showMenu ? "none" : "block"}`}}>Actualités</h2>
-
+                <hr/>
                 <article>
                     <ListEvenements Villageid={commerce.id.split("-")[2]}/> 
                 </article>

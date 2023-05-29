@@ -7,4 +7,10 @@ export interface Couleur{
 export interface Background{
     backgroundUrl?:string,
     Foncé?:boolean,
+    colorSec?:string,
+}
+
+export interface Header{
+    color?:string,
+    headerAppear?:boolean,
 }

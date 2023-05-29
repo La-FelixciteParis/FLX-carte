@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Principal } from "./Couleur";
-import { Couleur } from "../Types/Styles";
+import { Background, Couleur, Header } from "../Types/Styles";
 
 export const WidthUp = keyframes`
     0%{
@@ -63,7 +63,7 @@ export const MenuBurger=styled.div`
 
         span{
             width: 40px;
-            background:black;
+            background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
             height:3px;
             display:block;
             position:relative;
@@ -75,7 +75,7 @@ export const MenuBurger=styled.div`
                 position: absolute;
                 left: 0;
                 width: 40px;
-                background:black;
+                background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
                 height:3px;
                 display:block;
                 border-radius:3px;
@@ -89,7 +89,7 @@ export const MenuBurger=styled.div`
                 position: absolute;
                 left: 0;
                 width:40px;
-                background:black;
+                background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
                 height:3px;
                 display:block;
                 border-radius:3px;
@@ -111,17 +111,32 @@ export const CommerceContain= styled.div`
     transition:1s;
     min-height:80vh;
     display:flex;
+    justify-content:center;
 
-    h1{
+    h2{
         padding:5px;
         background:${({Primaire}:Couleur)=>Primaire};
         color:${({TextColor}:Couleur)=>TextColor};
+    }
+
+    hr{
+        border: none;
+        border-top: 10px double ${({Primaire}:Couleur)=>Primaire};
+        overflow: visible;
+        text-align: center;
+        height: 5px;
+        width:100%;
+    }
+
+    .InfoCom{
+        min-width: 50%;
     }
 
     .Village{
         cursor:pointer;
         border-left: 2px solid ${({Secondaire}:Couleur)=>Secondaire};
         padding-left: 5px; 
+        margin-bottom:25px;
 
         :hover{
             text-decoration:underline 2px ${({Secondaire}:Couleur)=>Secondaire};
@@ -170,14 +185,13 @@ export const CommerceContain= styled.div`
         flex-direction:column;
         gap:30px;
         width:100%;
+        max-width:1300px;
         padding:30px;
         animation: ${WidthUp} 0.5s forwards;
 
         article{
             display:flex;
             gap:20px;
-            overflow-x:auto;
-            scrollbar-width: none;
 
             div{
                 display:flex;
@@ -185,9 +199,12 @@ export const CommerceContain= styled.div`
 
                 ul{
                     margin:0;
+                    padding:0 0 10px;
+                    
                     li{
-                        display:flex;
+                        display:table-header-group;
                     }
+
                     a{
                         color:#00000080;
                         text-decoration:none;
@@ -224,51 +241,21 @@ export const CommerceContain= styled.div`
 `
 
 export const Visuel=styled.div`
-    width:50%;
-    max-height:500px;
-    padding:20px;
-
-    iframe{
-        width:100%;
-        height:100%;
-    };
-
-    img,video{
-        width:100%;
-    };
-
-    small{
-        width:130px;
-    }
-
-    a{
-        color:#00000080;
-        text-decoration:none;
-        
-        &:after{
-            content:"";
-            display:block;
-            background:${({Primaire}:Couleur)=>Primaire};
-            width:0;
-            transition:0.5s;
-            height:2px;
-        }
-
-        :hover{
-            color:black;
-            transition:0.5s;
-            &:after{
-                width:100%;
-                transition:0.5s;
-            };
-        };
-    };
-
-    @media (max-width: 780px){
+    width:100%;
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(${({backgroundUrl}:Background)=>backgroundUrl}) no-repeat center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    h1{
+        text-align:center;
+        color:${({color})=>color};
         padding:5px;
-        width:100%;
-        height:400px;
-    };
+        border-bottom: 1px solid;
+        border-right:1px solid;
+        border-image: linear-gradient(to bottom right, #FFFFFF00 70%, ${({colorSec}:Background)=>colorSec}) 1;
+
+    }
 `
 
 export const Ul=styled.ul`
@@ -283,7 +270,6 @@ export const Ul=styled.ul`
         }
     };
 
-    
 
     .Plus{
         margin:0;

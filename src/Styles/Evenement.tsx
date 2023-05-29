@@ -32,5 +32,6 @@ export const EvenementsContain = styled.div`
         gap:20px;
         flex-wrap:nowrap;
         width:100%;
+        scrollbar-width: none;
     }
 `

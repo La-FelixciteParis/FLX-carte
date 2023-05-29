@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Header } from "../Types/Styles";
 
 const RotateAnim=keyframes`
     0% {
@@ -17,14 +18,15 @@ export const HeaderStyle= styled.header`
     padding:10px;
     position:fixed;
     top:0;
-    border-bottom: 2px solid ${({color})=>color}80;
-    background-image: linear-gradient(to left, ${({color})=>color}80 ,rgba(255,255,255,1)25%), url(/Images/FelixPlace.jpg);
+    border-bottom: 2px solid ${({color})=>color}${({headerAppear}:Header)=>headerAppear ? '80':'00'} ;
+    background:${({headerAppear,color}:Header)=>headerAppear ? `linear-gradient(to left, ${color}80 ,rgba(255,255,255,1)25%), url(/Images/FelixPlace.jpg)`: "none"};
     background-size: cover;
     background-position: right;
     height: 72px;
     max-height: 72px;
     overflow: hidden;
     z-index:2;
+    transition:1s;
 
     img {
         animation: ${RotateAnim} 0.8s linear;
@@ -43,13 +45,18 @@ export const HeaderStyle= styled.header`
         animation-delay: 0s;
       }
 
+      button{ 
+        border: ${({headerAppear}:Header)=>!headerAppear && 'none'};
+        font-size:${({headerAppear}:Header)=>!headerAppear && '20px'};
+      }
+
       a{
         text-decoration: none;
-        color: #00000090;
+        color: ${({headerAppear}:Header)=>headerAppear? "#00000090": "#FFFFFF90"};
 
         :hover{
             cursor:pointer;
-            color: #000000;
+            color: ${({headerAppear}:Header)=>headerAppear? "#000000": "#FFFFFF"};
         }
       }
 `
