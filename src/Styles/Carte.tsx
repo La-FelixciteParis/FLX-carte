@@ -5,11 +5,11 @@ import { CarteProps } from "../Types/Carte";
 export const MainContainer = styled.div`
     margin: 72px 0 0;
     width:100%;
-    min-height:72vh;
+    min-height:1000px;
 `
 
 export const Dl = styled.p`
-  top: 400px;
+  top: 800px;
   position: absolute;
 
   :hover {
@@ -31,8 +31,8 @@ export const CanvasContainer = styled.div`
 
 export const BackgroundCanvas = styled.canvas`
   position: absolute;
-  top: 0;
-  left: 0;
+  left: ${({x}:CarteProps)=>x}px;
+  top: ${({y}:CarteProps)=>y}px;
   background:url(/Images/${({image}:CarteProps)=>image}.png) center center/cover no-repeat;
 `
 

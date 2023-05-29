@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useLocation, useParams } from "react-router-dom"
 import { BackgroundCanvas, CanvasContainer, Dl, QRCanvas,MainContainer, Text } from "../Styles/Carte"
 import React, { useEffect, useRef, useState } from "react";
@@ -24,6 +26,7 @@ export const Carte = () =>{
         return React.useMemo(() => new URLSearchParams(search), [search]);
       }
     const backgroundCanvasRef = useRef(null);
+    const ArrièreRef= useRef(null)
 
     const query=useQuery()
 
@@ -80,6 +83,25 @@ export const Carte = () =>{
               downloadLink.click();
             };
         }
+        const Arrière = ArrièreRef.current as any;
+        if(Arrière){
+            const downloadCanvas = document.createElement("canvas");
+            downloadCanvas.width = Arrière.width;
+            downloadCanvas.height = Arrière.height;
+            const ctx = downloadCanvas.getContext("2d") as any; 
+            // Dessine l'arrière
+            const backgroundImage = new Image();
+            backgroundImage.src = `/Images/Carte${id.split("-")[1]}.png`;
+            backgroundImage.onload = () => {
+              ctx.drawImage(backgroundImage, 0, 0, downloadCanvas.width, downloadCanvas.height);
+              const dataUrl = downloadCanvas.toDataURL("image/png");
+              const downloadLink = document.createElement("a");
+              downloadLink.href = dataUrl;
+              downloadLink.download = `ArrièreCarte-${id}.png`;
+              downloadLink.click();
+            }
+        }
+
       };
 
     return(
@@ -89,12 +111,23 @@ export const Carte = () =>{
               width="500"
               height="300"
               image="base-carte"
+              x={0}
+              y={0}
               ref={backgroundCanvasRef}
             />
             <QRCanvas id="qr-canvas" value={`${process.env.REACT_APP_URL}${query.get("route")}${id}`} x={330} y={35}/>
             <Text x={161} y={114} size={13}>{id}</Text>
             <Text x={106} y={28} size={18}>{query.get('Nom')}</Text>
             <Text x={110} y={63} size={18}>{village}</Text>
+
+            <BackgroundCanvas
+            width="500"
+            height="300"
+            image={`Carte${id.split("-")[1]}`}
+            x={0}
+            y={400}
+            ref={ArrièreRef}
+            />
 
           </CanvasContainer>
           <Dl onClick={downloadQR}>Télécharger QR</Dl>
