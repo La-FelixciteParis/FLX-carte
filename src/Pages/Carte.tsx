@@ -94,6 +94,16 @@ export const Carte = () =>{
             backgroundImage.src = `/Images/Carte${id.split("-")[1]}.png`;
             backgroundImage.onload = () => {
               ctx.drawImage(backgroundImage, 0, 0, downloadCanvas.width, downloadCanvas.height);
+              ctx.save()
+              const text=village
+             const x=-290
+            const y=465
+            const police = '20px Arial'
+            ctx.font = police;
+            ctx.rotate( Math.PI / -2 );
+            ctx.fillText(text, x, y,140);
+            ctx.restore()
+
               const dataUrl = downloadCanvas.toDataURL("image/png");
               const downloadLink = document.createElement("a");
               downloadLink.href = dataUrl;
