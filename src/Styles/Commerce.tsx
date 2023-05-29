@@ -133,13 +133,14 @@ export const CommerceContain= styled.div`
     }
 
     .Village{
-        cursor:pointer;
-        border-left: 2px solid ${({Secondaire}:Couleur)=>Secondaire};
-        padding-left: 5px; 
+        cursor:pointer; 
         margin-bottom:25px;
+        text-decoration:underline 2px ${({Secondaire}:Couleur)=>Secondaire};
 
         :hover{
-            text-decoration:underline 2px ${({Secondaire}:Couleur)=>Secondaire};
+            transform: scale(1.1);
+            padding-left:25px;
+            text-decoration:underline 3px ${({Secondaire}:Couleur)=>Secondaire};
         }
     }
 

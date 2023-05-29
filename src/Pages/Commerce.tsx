@@ -159,7 +159,7 @@ export const Commerce = () =>{
     return (
         <>
         <MenuBurger headerAppear={scroll}><button className={`${showMenu && "show_bar"}`} onClick={HandleBurgerClick}><span/></button></MenuBurger>
-        <Visuel backgroundUrl={image} color={commerce.TextColor} colorSec={commerce.CouleurSec}>
+        <Visuel backgroundUrl={image} color={commerce.TextColor} colorSec={commerce.Couleur}>
             <h1>{commerce.COM_ACTnom}</h1>
         </Visuel>
         <CommerceContain Primaire={commerce.Couleur} Secondaire={commerce.CouleurSec} TextColor={commerce.TextColor}>

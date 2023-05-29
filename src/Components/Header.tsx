@@ -62,7 +62,7 @@ export const Header = ()=>{
           };
       
           window.addEventListener("scroll", handleScroll);
-    };
+        };
     
     },[])
 
@@ -71,7 +71,7 @@ export const Header = ()=>{
         const height = window.innerHeight
         
         
-        if(scrollTop>=height-20){
+        if(scrollTop>=height-20 || location.pathname.split("/")[1]!== "Commerce"){
             setScroll(true);   
         }else{
             setScroll(false)

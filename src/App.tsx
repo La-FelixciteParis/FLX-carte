@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css'
 import { Home } from "./Pages/Home";
 import { Village } from "./Pages/Village";
 import { Evenement } from "./Pages/Evenement";
+import { Carte } from "./Pages/Carte";
 
 const App = () =>{
   return(
@@ -29,6 +30,7 @@ const App = () =>{
                 <Route path="/Village" element={<Village/>}/>
                 <Route path="/Evenement/:id" element={<Evenement/>}/>
                 <Route path="/Admin" element={<Admin/>}/>
+                <Route path="/Admin/:id" element={<Carte/>}/>
               </Routes>
           </FormaPage>
           </CommerçantContextProvider>
