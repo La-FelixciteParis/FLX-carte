@@ -14,7 +14,6 @@ export interface EvenementInfo{
     dateDébut:string,
     dateFin:string,
     nom:string,
-    villageId:string,
     Lieu:string,
     Type:string,
     Contacts:EvenementContact [],
