@@ -125,7 +125,7 @@ export const Carte = () =>{
               y={0}
               ref={backgroundCanvasRef}
             />
-            <QRCanvas id="qr-canvas" value={`${process.env.REACT_APP_URL}${query.get("route")}${id}`} x={330} y={35}/>
+            <QRCanvas id="qr-canvas" value={`${process.env.REACT_APP_URL}User/${id}`} x={330} y={35}/>
             <Text x={161} y={114} size={13}>{id}</Text>
             <Text x={106} y={28} size={18}>{query.get('Nom')}</Text>
             <Text x={110} y={63} size={18}>{village}</Text>

@@ -4,7 +4,7 @@ import { ValidDl, ValidDlCom } from "../API/Supabase/User";
 import { QR } from "../Styles/Admin";
 import { useNavigate } from "react-router-dom";
 
-export const QrCodeDl = ({id,COM_ACTnom,QrDl,QrDlCom,onReload,route}:QrpropsType)=>{
+export const QrCodeDl = ({id,COM_ACTnom,QrDl,QrDlCom,onReload,route,user}:QrpropsType)=>{
 
   const navigate = useNavigate()
   
@@ -38,9 +38,9 @@ export const QrCodeDl = ({id,COM_ACTnom,QrDl,QrDlCom,onReload,route}:QrpropsType
         <QR>
           <QRCodeCanvas value={`${process.env.REACT_APP_URL}${route}${id}`} id="QR"/> 
           <small>{COM_ACTnom}</small>
-          {!QrDl && <p onClick={downloadQR}> Download QR </p>}
-          {!QrDlCom && <p onClick={downloadQRCOM}> Download QR </p>}
-          <p onClick={()=>navigate(`/Admin/${id}?route=${route}&Nom=${COM_ACTnom}`)}>Voire carte</p>
+          {!QrDl &&  user && <p onClick={downloadQR}> Download QR </p>}
+          {!QrDlCom && !user && <p onClick={downloadQRCOM}> Download QR COM </p>}
+          {route !== 'Commerce/' && <p onClick={()=>navigate(`/Admin/${id}?Nom=${COM_ACTnom}`)}>Voire carte</p>}
         </QR>
     )
 }

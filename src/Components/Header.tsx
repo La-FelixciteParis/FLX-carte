@@ -56,15 +56,22 @@ export const Header = ()=>{
     const location= useLocation()
 
     useEffect(()=>{
-    if(location.pathname.split("/")[1]=== "Commerce"){
-        const handleScroll = () => {
-            setScrollTop(window.scrollY);
-          };
-      
+        
+        if(location.pathname.split("/")[1]=== "Commerce"){
+            const handleScroll = () => {
+                setScrollTop(window.scrollY);
+              };
+          
           window.addEventListener("scroll", handleScroll);
         };
     
+        if(location.pathname.split("/")[1]!=='Admin'){
+            localStorage.removeItem('AdminPerm')
+        }
+    
     },[])
+
+    
 
     useEffect(()=>{
         
