@@ -3,4 +3,5 @@ export interface CarteProps{
     x?:number,
     y?:number,
     size?:number,
+    rotate?:number
 }

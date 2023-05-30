@@ -138,6 +138,7 @@ export const Carte = () =>{
             y={400}
             ref={ArrièreRef}
             />
+            <Text x={429} y={630} size={20} rotate={-90}>{village}</Text>
 
           </CanvasContainer>
           <Dl onClick={downloadQR}>Télécharger QR</Dl>
