@@ -23,7 +23,7 @@ export const Text = styled.p`
     left: ${({x}:CarteProps)=>x}px;
     top: ${({y}:CarteProps)=>y}px; 
     font-size: ${({size}:CarteProps)=>size}px;
-    transform:rotate(${({rotate}:CarteProps)=>rotate}deg)
+    transform:rotate(${({rotate}:CarteProps)=>rotate}deg);
 `
 
 export const CanvasContainer = styled.div`

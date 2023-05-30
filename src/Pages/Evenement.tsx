@@ -8,6 +8,8 @@ import { EvenementInfo } from "../Types/Evenement"
 import { GetVillage } from "../API/Supabase/Village"
 import { UserParIdentifiant } from "../API/Supabase/User"
 import { UserType } from "../Types/User"
+import { donwload } from "../API/Supabase/Images"
+import { Commerce } from "../Components/Commerce"
 
 export const Evenement = () =>{
     const {id} = useParams() as any
@@ -15,6 +17,7 @@ export const Evenement = () =>{
     const [evenement,setEvenement] = useState<EvenementInfo | null>(null)
     const [villages,setVillages] = useState<string[] | null>(null)
     const [commerces,setCommerces] = useState<UserType[] | null>(null)
+    const [image,setImage] = useState<string>('')
 
 
     useEffect(()=>{
@@ -22,8 +25,13 @@ export const Evenement = () =>{
     },[])
 
     useEffect(()=>{
-        FetchVillage()
-        FetchCommercant()
+        
+        if(evenement){
+            FetchVillage()
+            FetchCommercant()
+            const img =  donwload(evenement.Image) as any
+            setImage(img.publicUrl)
+        }
     },[evenement])
 
     const FetchEvenement = async()=>{
@@ -33,7 +41,6 @@ export const Evenement = () =>{
     }
 
     const FetchVillage = async () => {
-        if (evenement) {
           const data = await GetLink('Link_Evenement_Village', id);
           if (data) {
             const villageIds = data.map(dat => dat.idVillage);
@@ -48,11 +55,10 @@ export const Evenement = () =>{
       
             setVillages(villageNames);
           }
-        }
+        
       };
 
       const FetchCommercant = async () =>{
-        if (evenement){
             const data = await GetLink('Link_Evenement_Commercants',id)
             if (data){
                 const ComIds=data.map(dat=>dat.id_Com)
@@ -64,30 +70,37 @@ export const Evenement = () =>{
                 })
 
                 const Commerçants = await Promise.all(ComPromises) as any
-
                 setCommerces(Commerçants)
                 
             }
-        }
+        
       }
 
-    return <MainContainer>
+    return <MainContainer backgroundUrl={image}>
         {evenement && <> 
-            <h1>{evenement.nom}</h1>
-            <p>ce trouve: {evenement.Lieu}</p>
-            <p>Villages participants:</p>
-            <ul>
-            {villages?.map(village=>{
-                
-                return(<li key={village}>{village}</li>)
+            <article className="Image">
+                <h1>{evenement.nom}</h1>
+            </article>
+            <article>
+                <div>
+                    <p>{evenement.Type}</p>
+                    <p>{evenement.Lieu}</p>
+                    <p>Villages participants:</p>
+                    <ul>
+                    {villages?.map(village=>{
+
+                        return(<li key={village}>{village}</li>)
+                    })}
+                    </ul>
+                    
+                </div>
+            </article>
+            <h2>Participation de:</h2>
+            <article className="Commerces">
+            {commerces?.map(commerce=>{
+                return(<Commerce commerce={commerce}/>)
             })}
-            </ul>
-            <p>commerçants Partipants:</p>
-            <ul>
-                {commerces?.map(commerce=>{
-                    return(<li key={commerce.id}>{commerce.Artisant && 'Artisant'} {commerce.métier} {commerce.COM_ACTnom}</li>)
-                })}
-            </ul>
+            </article>
         </>}
     </MainContainer>
 }

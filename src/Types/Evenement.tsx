@@ -1,3 +1,5 @@
+import { UserType } from "./User"
+
 export interface EvenementProps{
     Villageid:string
 }
@@ -23,4 +25,8 @@ export interface EvenementInfo{
 
 export interface Evenement{
     evenement: EvenementInfo
+}
+
+export interface CommercePropsType{
+    commerce:UserType
 }
