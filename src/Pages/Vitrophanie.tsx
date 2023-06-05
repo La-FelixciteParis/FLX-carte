@@ -46,7 +46,7 @@ export const Vitrophanie = () =>{
               const dataUrl = downloadCanvas.toDataURL("image/png");
               const downloadLink = document.createElement("a");
               downloadLink.href = dataUrl;
-              downloadLink.download = `Vitrophanie-${id}.png`;
+              downloadLink.download = `Vitrophanie-${query.get('Nom')}.png`;
               downloadLink.click();
             };
         }
