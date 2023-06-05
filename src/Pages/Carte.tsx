@@ -66,7 +66,7 @@ export const Carte = () =>{
             const y1=70
             const police1 = '18px Arial'
             ctx.font = police1;
-            ctx.fillText(name, x1, y1);
+            ctx.fillText(name, x1, y1,170);
 
             //Dessine Village
 
