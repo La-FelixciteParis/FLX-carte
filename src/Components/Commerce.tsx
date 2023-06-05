@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useState } from "react"
 import { CommerceDiv } from "../Styles/EvenementPage"
 import { donwload } from "../API/Supabase/Images"

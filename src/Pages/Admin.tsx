@@ -78,7 +78,7 @@ export const Admin= () =>{
                 <section>
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM"){
-                            return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={false} key={id.id} onReload={Ids}/>) 
+                            return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={false} key={`com-${id.id}`} onReload={Ids}/>) 
                         }else{
                             return <></>
                         }

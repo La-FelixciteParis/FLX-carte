@@ -28,7 +28,6 @@ export const QR=styled.div`
         text-align:center;
         color:#00000090;
         width:120px;
-        height:33px;
         box-shadow:0px 0px 9px 1px rgba(0,0,0,0.30);
         :hover{
             cursor: pointer;

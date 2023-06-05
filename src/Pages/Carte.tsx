@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router-dom"
 import { BackgroundCanvas, CanvasContainer, Dl, QRCanvas,MainContainer, Text } from "../Styles/Carte"
 import React, { useEffect, useRef, useState } from "react";
 import { GetVillage } from "../API/Supabase/Village";
+import { ValidDl } from "../API/Supabase/User";
 
 export const Carte = () =>{
     const {id} = useParams() as any
@@ -31,7 +32,7 @@ export const Carte = () =>{
     const query=useQuery()
 
 
-    const downloadQR = () => {
+    const downloadQR = async() => {
         const backgroundCanvas = backgroundCanvasRef.current as any;
         if(backgroundCanvas){
             const qrCanvas = document.getElementById("qr-canvas");
@@ -111,6 +112,8 @@ export const Carte = () =>{
               downloadLink.click();
             }
         }
+
+      await ValidDl(id)
 
       };
 
