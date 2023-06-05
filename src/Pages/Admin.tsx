@@ -35,18 +35,18 @@ export const Admin= () =>{
 
     useEffect(()=>{
         Ids()       
-        const LocalAdmin = localStorage.getItem('AdminPerm')
-        if(LocalAdmin){
-            setValid(true)
-        }else{
-            setValid(false)
-        }
     },[])
 
     const Ids = async() =>{
         const data = await GetIds()
         if(data){
             setIds(data);
+        }
+        const LocalAdmin = localStorage.getItem('AdminPerm')
+        if(LocalAdmin){
+            setValid(true)
+        }else{
+            setValid(false)
         }
     }
 
@@ -84,6 +84,7 @@ export const Admin= () =>{
         setNom("")
         setMétier("")
         setNomCommerce("")
+        Ids()
     }
 
     const NewId = async(e:any)=>{
