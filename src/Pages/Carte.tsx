@@ -80,7 +80,7 @@ export const Carte = () =>{
               const dataUrl = downloadCanvas.toDataURL("image/png");
               const downloadLink = document.createElement("a");
               downloadLink.href = dataUrl;
-              downloadLink.download = `Carte-${id}.png`;
+              downloadLink.download = `Carte-${query.get('Nom')}.png`;
               downloadLink.click();
             };
         }
