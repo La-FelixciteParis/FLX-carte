@@ -1,10 +1,10 @@
 import { InputType } from "../Types/Input"
 
-export const Input = ({text,type,onChange}:InputType)=>{
+export const Input = ({text,type,onChange,value}:InputType)=>{
     return(
         <>
             <label htmlFor={text}>{text}</label>
-            <input type={type} placeholder={`${text}...`} onChange={onChange}/>
+            <input type={type} placeholder={`${text}...`} value={value} onChange={onChange}/>
         </>
     )
 }

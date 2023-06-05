@@ -6,6 +6,17 @@ export const Form = styled.form`
     gap: 10px;
     text-align: center;
     align-items:center;
+
+    div{
+        display:flex;
+        gap:20px;
+
+        @media (max-width: 780px){
+            flex-direction:column;
+        };
+    }
+
+    
 `
 
 export const FormContain= styled.div`

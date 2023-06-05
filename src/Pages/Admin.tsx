@@ -2,17 +2,36 @@ import { useEffect, useState } from "react"
 import { Input } from "../Components/Input"
 import { Form, FormContain } from "../Styles/Connect"
 import { AdminContain } from "../Styles/Admin"
-import { GetIds, LoginAdmin } from "../API/Supabase/User"
+import { GetIds, LoginAdmin, UserCreate } from "../API/Supabase/User"
 import { QrCodeDl } from "../Components/DlQRCode"
 import { QrpropsType } from "../Types/QR"
 import { ValidAdmin } from "../API/Supabase/Admin"
 
 export const Admin= () =>{
+
+    //sécurité
+
     const [valid,setValid] = useState<boolean>(false)
     const [mdp,setMdp] = useState<string>("")
     const [email,setEmail] = useState<string>("")
-    const [ids,setIds] = useState<[]|QrpropsType[]>([])
     const [error,setError]= useState<string|null>(null)
+
+    //données qr
+    const [ids,setIds] = useState<[]|QrpropsType[]>([])
+
+    //création nouvel id
+        //id
+    const [carte,setCarte]=useState<string>("")
+    const [village,setVillage]=useState<string>("")
+    const [assoc,setAssoc]=useState<string>("")
+    const [numéro,setNuméro]=useState<string>("")
+        //Gérant
+    const [nom,setNom] = useState<string>("")
+    const [prénom,setPrénom] = useState<string>("")
+        //Info com
+    const [métier,setMétier] = useState<string>("")
+    const [nomCommerce,setNomCommerce] = useState<string>("")
+
 
     useEffect(()=>{
         Ids()       
@@ -53,9 +72,33 @@ export const Admin= () =>{
             setError("Utilisateur non existant")
             setValid(false)
         }
+     
+    }
 
+    const RemiseAZero = ()=>{
+        setCarte("")
+        setVillage("")
+        setAssoc("")
+        setNuméro("")
+        setPrénom("")
+        setNom("")
+        setMétier("")
+        setNomCommerce("")
+    }
+
+    const NewId = async(e:any)=>{
+        e.preventDefault()
+        const body = {
+            id: `FLX-${carte}-${village}-${assoc}-${numéro}`,
+            Prénom:prénom,
+            Nom:nom,
+            métier,
+            COM_ACTnom:nomCommerce
+        }
+        await UserCreate(body)
+
+        RemiseAZero()
         
-          
     }
 
     return (
@@ -95,6 +138,51 @@ export const Admin= () =>{
                         }                 
                     })}
                 </section>
+                <FormContain>
+                    <Form onSubmit={NewId}>
+                        <p>ID</p>
+                        <div>
+                        <label htmlFor="Carte">Carte</label>
+                        <select value={carte} name="Carte" onChange={(e:any)=>{setCarte(e.target.value)}}>
+                            <option value="">Choisir</option>
+                            <option value="COM">Commerçant</option>
+                            <option value="ACT">Activité</option>
+                            <option value="HBT">Habitant</option>
+                            <option value="SJR">Séjour</option>
+                        </select>
+                        <label htmlFor="Village">Village</label>
+                        <select value={village} name="Village" onChange={(e:any)=>{setVillage(e.target.value)}}>
+                            <option value="">Choisir</option>
+                            <option value="000">Karen</option>
+                            <option value="001">Marche Daumesnil</option>
+                            <option value="002">Dugommier Charenton</option>
+                            <option value="003">Daumesnil Bel Air</option>
+                            <option value="004">Gare de Reuilly</option>
+                        </select>
+                        <label htmlFor="Assoc">Association</label>
+                        <select value={assoc} name="Assoc" onChange={(e:any)=>{setAssoc(e.target.value)}}>
+                            <option value="">Choisir</option>
+                            <option value="ACPB">ACPB</option>
+                            <option value="ADCFSA">ADCFSA</option>
+                            <option value="HAPCO">HAPCO</option>
+                            <option value="VILFAI">VILFAI</option>
+                            <option value="FLX">FLX</option>
+                        </select>
+                        <Input value={numéro} text="numéro" type="text" onChange={(e:any)=>{setNuméro(e.target.value)}}/>
+                        </div>
+                        <p>Gérant(e)</p>
+                        <div>
+                            <Input value={prénom} text="Prénom" type="text" onChange={(e:any)=>{setPrénom(e.target.value)}}/>
+                            <Input value={nom} text="Nom" type="text" onChange={(e:any)=>{setNom(e.target.value)}}/>
+                        </div>
+                        <p>Info com</p>
+                        <div>
+                        <Input value={métier} text="Métier" type="text" onChange={(e:any)=>{setMétier(e.target.value)}}/>
+                        <Input value={nomCommerce} text="NomCommerce" type="text" onChange={(e:any)=>{setNomCommerce(e.target.value)}}/>
+                        </div>
+                        <button type="submit">Créer</button>
+                    </Form>
+                </FormContain>
             </AdminContain>
             :
             <FormContain>

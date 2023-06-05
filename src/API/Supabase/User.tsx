@@ -1,4 +1,4 @@
-import { UserInfoType } from "../../Types/User"
+import { UserInfoType, UserType } from "../../Types/User"
 import supabase from "./client"
 
 export const UserParIdentifiant = async (id:string) =>{
@@ -141,4 +141,29 @@ export const GetIds = async() =>{
     .from('Identifiant')
     .update({[column]:lien})
     .eq("id",id)
+  }
+
+  export const UserCreate=async(body:UserType)=>{
+    const {data:id,error} = await supabase
+    .from('Identifiant')
+    .select('id')
+    .eq('id',body.id)
+    
+    if(id){
+      if(id.length === 0){
+      await supabase
+      .from('Identifiant')
+      .insert([
+        body,
+      ])
+    }else{
+      console.log('existe déjà');
+      
+    }
+    }else{
+      console.log(error);
+      
+    }
+
+    
   }

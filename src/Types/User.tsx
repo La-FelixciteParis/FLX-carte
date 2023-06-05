@@ -1,15 +1,15 @@
 export interface UserType{
-    COM_ACTnom: string,
+    COM_ACTnom?: string,
 ​
     COMid?: string,
 ​
-    Couleur: string,
+    Couleur?: string,
 
     CouleurSec?: string,
 
     TextColor?: string,
 ​
-    Description: string,
+    Description?: string,
 ​
     Facebook?: string,
     ​
@@ -23,15 +23,15 @@ export interface UserType{
     ​
     Linkedin?: string,
     ​
-    Nom: string,
+    Nom?: string,
     ​
-    OP: boolean,
+    OP?: boolean,
     ​
-    Paire: null|boolean,
+    Paire?: null|boolean,
     ​
-    Prénom: string,
+    Prénom?: string,
     ​
-    QrDl: boolean,
+    QrDl?: boolean,
     ​
     SiteWeb?: string,
 
@@ -43,17 +43,17 @@ export interface UserType{
     ​    ​
     adresse?: string,
     ​
-    besoin: string,
+    besoin?: string,
     ​
-    contribution: string,
+    contribution?: string,
     ​
-    created_at: string,
+    created_at?: string,
     ​
-    email: string,
+    email?: string,
     
     id: string,
     ​
-    métier: string,
+    métier?: string,
 
     Artisant?:boolean,
 }
