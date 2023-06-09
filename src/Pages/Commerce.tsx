@@ -177,7 +177,7 @@ export const Commerce = () =>{
                             <li>Gérant: {commerce.Prénom} {commerce.Nom}</li> <br/>
                             {commerce.email && <><li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li><br/></>}
                             {commerce.Tel && <><li>{commerce.Tel}</li><br/></>}
-                            <li>{commerce.SiteWeb && <a target="_blank" rel="noreferrer" href={commerce.SiteWeb}>Plus d'infos sur le commerce</a>}</li>
+                            <li>{commerce.SiteWeb && <a target="_blank" rel="noreferrer" href={commerce.SiteWeb}>Plus d'infos</a>}</li>
                         </ul>
 
                         <Ul>
