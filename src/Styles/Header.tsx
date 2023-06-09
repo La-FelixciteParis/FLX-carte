@@ -1,14 +1,26 @@
 import styled, { keyframes } from "styled-components";
 import { Header } from "../Types/Styles";
 
-const RotateAnim=keyframes`
-    0% {
-        transform: translateX(-300px)rotate(0deg);
-    }
-    100% {
-        transform: translateX(0px)rotate(360deg);
-    }
+const Eclat =(bright:any)=>  keyframes`
+0%{
+  transform: scale(0);
+  opacity:0;
+  filter: brightness(1);
+}
+
+50%{
+  transform: scale(1.75);
+  filter: brightness(${bright});
+}
+
+100%{
+  transform: scale(1);
+  opacity:1;
+  filter: brightness(1);
+}
+
 `
+
 
 export const HeaderStyle= styled.header`
     display:flex;
@@ -28,21 +40,27 @@ export const HeaderStyle= styled.header`
     z-index:2;
     transition:1s;
 
-    img {
-        animation: ${RotateAnim} 0.8s linear;
-        width: 50px;
-        transform: scale(1);
+    .logo {
+        width: 125px;
         transition: transform 1s;
         opacity: 0.8;
+        position:fixed;
+        top:16px;
+        left:222px;
         
       }
     
       img:hover {
         opacity: 1;
         cursor: pointer;
-        transform: scale(1.1);
-        transition: transform 1s;
-        animation-delay: 0s;
+      }
+
+      .anime{
+        width:28px;
+        position:fixed;
+        top:17px;
+        left:318px;
+        animation: ${Eclat(({bright}:Header)=>bright)} 1s ease-in;
       }
 
       button{ 

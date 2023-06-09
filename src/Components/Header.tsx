@@ -87,8 +87,9 @@ export const Header = ()=>{
     },[scrollTop])
 
     return(
-        <HeaderStyle color={color} headerAppear={scroll}>
-            <img src={scroll ? "/images/Felixcite-Logo.png " : "/images/Felixcite-Logo-blanc.png"} alt="Logo Félixcité" onClick={handleHomeClick}/>
+        <HeaderStyle color={color} headerAppear={scroll} bright={scroll ? 0.5 : 3}>
+            <img className="logo" src="/Images/LogoEtoileFlx.png" alt="Logo Félixcité" onClick={handleHomeClick}/>
+            <img className="anime" src="/Images/éclat.png" alt="éclat"/>
             {isCommerce ? <ButtonStyle color={color}><a href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Rejoindre</a></ButtonStyle>
              : 
             idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
