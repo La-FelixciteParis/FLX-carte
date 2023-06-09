@@ -127,7 +127,7 @@ export const Admin= () =>{
                 <h2>CommercePasDl</h2>
                 <section>
                 {ids.map((id)=>{
-                        if(id.id.split("-")[1] === "COM"){
+                        if(id.id.split("-")[1] === "COM" ||id.id.split("-")[1] === "ACT"){
                             return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={false} key={`comPasDl-${id.COM_ACTnom}`} onReload={Ids}/>) 
                         }else{
                             return <div className="none" key={`NoneAfficPasDL-${id.COM_ACTnom}`}  />
@@ -138,7 +138,7 @@ export const Admin= () =>{
                 <h2>CommerceDL</h2>
                 <section>
                 {ids.map((id)=>{
-                        if(id.id.split("-")[1] === "COM"){
+                        if(id.id.split("-")[1] === "COM" ||id.id.split("-")[1] === "ACT"){
                             return(id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={true}  key={`comDl-${id.COM_ACTnom}`}/>) 
                         }else{
                             return <div className="none" key={`NoneAfficDL-${id.COM_ACTnom}`}  />
