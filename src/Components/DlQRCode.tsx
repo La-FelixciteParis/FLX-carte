@@ -3,7 +3,7 @@ import { QrpropsType } from "../Types/QR";
 import { QR } from "../Styles/Admin";
 import { useNavigate } from "react-router-dom";
 
-export const QrCodeDl = ({id,COM_ACTnom,QrDlCom,onReload,route,user}:QrpropsType)=>{
+export const QrCodeDl = ({id,COM_ACTnom,route}:QrpropsType)=>{
 
   const navigate = useNavigate()
 

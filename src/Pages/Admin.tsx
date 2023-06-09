@@ -115,22 +115,22 @@ export const Admin= () =>{
                 <h2>Pas encore DL</h2>
                 <section>
                     {ids.map((id)=>{
-                            return(!id.QrDl && <QrCodeDl id={id.id} route="User/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} onReload={Ids} user/>)              
+                            return(!id.QrDl && <QrCodeDl id={id.id} route="User/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={`UserPasDl${id.COM_ACTnom}`} onReload={Ids} user/>)              
                     })}
                 </section>
                 <h2>Déjà DL</h2>
                 <section>
                     {ids.map((id)=>{
-                            return (id.QrDl && <QrCodeDl id={id.id} route="USer/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={id.id} user/>)
+                            return (id.QrDl && <QrCodeDl id={id.id} route="USer/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={`UserDl${id.COM_ACTnom}`} user/>)
                     })}
                 </section>
                 <h2>CommercePasDl</h2>
                 <section>
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM"){
-                            return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={false} key={`com-${id.id}`} onReload={Ids}/>) 
+                            return(!id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={false} key={`comPasDl-${id.COM_ACTnom}`} onReload={Ids}/>) 
                         }else{
-                            return <></>
+                            return <div className="none" key={`NoneAfficPasDL-${id.COM_ACTnom}`}  />
                         }
                                          
                     })}
@@ -139,9 +139,9 @@ export const Admin= () =>{
                 <section>
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM"){
-                            return(id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={true}  key={id.id}/>) 
+                            return(id.QrDlCom && <QrCodeDl id={id.id} route="Commerce/" COM_ACTnom={id.COM_ACTnom} QrDlCom={true}  key={`comDl-${id.COM_ACTnom}`}/>) 
                         }else{
-                            return <></>
+                            return <div className="none" key={`NoneAfficDL-${id.COM_ACTnom}`}  />
                         }                 
                     })}
                 </section>

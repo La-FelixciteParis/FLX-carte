@@ -13,7 +13,11 @@ export const AdminContain=styled.div`
         width:100%;
         overflow-x:auto;
         scrollbar-width: none;
-        gap:20px; 
+        gap:20px;
+
+        .none{
+            display:none;
+        }
     }
 `
 
