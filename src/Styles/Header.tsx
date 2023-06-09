@@ -45,7 +45,7 @@ export const HeaderStyle= styled.header`
         transition: transform 1s;
         opacity: 0.8;
         position:fixed;
-        top:16px;
+        top:12.5px;
         left:222px;
         
       }
@@ -58,7 +58,7 @@ export const HeaderStyle= styled.header`
       .anime{
         width:28px;
         position:fixed;
-        top:17px;
+        top:14px;
         left:318px;
         animation: ${Eclat(({bright}:Header)=>bright)} 1s ease-in;
       }
@@ -66,6 +66,9 @@ export const HeaderStyle= styled.header`
       button{ 
         border: ${({headerAppear}:Header)=>!headerAppear && 'none'};
         font-size:${({headerAppear}:Header)=>!headerAppear && '20px'};
+        position:fixed;
+        top:21px;
+        left:70%;
       }
 
       a{
