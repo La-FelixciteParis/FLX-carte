@@ -6,6 +6,7 @@ import { GetIds, LoginAdmin, UserCreate } from "../API/Supabase/User"
 import { QrCodeDl } from "../Components/DlQRCode"
 import { QrpropsType } from "../Types/QR"
 import { ValidAdmin } from "../API/Supabase/Admin"
+import { GetACT } from "../API/Supabase/User"
 
 export const Admin= () =>{
 
@@ -44,7 +45,12 @@ export const Admin= () =>{
         }
         const LocalAdmin = localStorage.getItem('AdminPerm')
         if(LocalAdmin){
-            setValid(true)
+            const Admin= await GetACT(LocalAdmin)
+            if(Admin){
+                setValid(true)
+            }else{
+                setValid(false)
+            }
         }else{
             setValid(false)
         }
@@ -63,7 +69,7 @@ export const Admin= () =>{
             const validation=await ValidAdmin(data.user?.id);
             if(validation && validation.length>0){
                 setValid(true)
-                localStorage.setItem('AdminPerm','true')
+                localStorage.setItem('AdminPerm', `${data.session?.access_token}`)
             }else{
                 setError("non autorisé");
                 setValid(false)

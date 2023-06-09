@@ -5,9 +5,9 @@ export const ValidAdmin = async(id:any)=>{
     .from('Admin')
     .select('UserId')
     .eq('UserId',id)
+    
     if(error){
-        console.log(error);
-        
+        console.log(error);   
     }
     return Admin;
     
