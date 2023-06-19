@@ -136,7 +136,7 @@ export const GetIds = async() =>{
       .eq("id", id)
   }
 
-  export const UpdateReseaux=async(id:string,column:string,lien:string)=>{
+  export const Update=async(id:string,column:string,lien:string)=>{
     await supabase
     .from('Identifiant')
     .update({[column]:lien})

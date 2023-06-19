@@ -3,7 +3,7 @@
 import { QRCodeCanvas } from "qrcode.react"
 import { useContext, useEffect,useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ChangeColorUser, UpdateImageUser, UpdateReseaux, UserParIdentifiant } from "../API/Supabase/User"
+import { ChangeColorUser, UpdateImageUser, Update, UserParIdentifiant } from "../API/Supabase/User"
 import { Loader } from "../Components/Loader"
 import { CommerçantContext } from "../Context/Commercant"
 import { UserContext } from "../Context/IdUser"
@@ -148,7 +148,7 @@ export const Info = ()=>{
     }
 
     const handleValidLien = async()=>{
-        await UpdateReseaux(idUser,addReseaux,lien)
+        await Update(idUser,addReseaux,lien)
         setPlusReseaux(false)
         setPlus(false)
         ClientFetch()
