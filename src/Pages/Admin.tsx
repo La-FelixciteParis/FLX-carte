@@ -7,6 +7,8 @@ import { QrCodeDl } from "../Components/DlQRCode"
 import { QrpropsType } from "../Types/QR"
 import { ValidAdmin } from "../API/Supabase/Admin"
 import { GetACT } from "../API/Supabase/User"
+import { AudioList } from "../Liste audio/Audio"
+import { QRCodeCanvas } from "qrcode.react"
 
 export const Admin= () =>{
 
@@ -190,6 +192,16 @@ export const Admin= () =>{
                         <button type="submit">Créer</button>
                     </Form>
                 </FormContain>
+
+                <h2>QR Audio</h2>
+                <section>
+                    {AudioList.map((list)=>{
+                        return <div>
+                            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`}/>
+                            <p>{list.AudioUrl}</p>
+                        </div>
+                    })}
+                </section>
             </AdminContain>
             :
             <FormContain>

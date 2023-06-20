@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { QRCodeCanvas } from "qrcode.react"
 import { Audio } from "../Components/Audio"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { AudioList } from "../Liste audio/Audio"
+import { AudioContain } from "../Styles/Audio"
 
 export const AudioPage = () =>{
 
@@ -24,9 +24,8 @@ export const AudioPage = () =>{
     },[])
 
     return(
-        <div style={{margin: "100px 20px"}}>
+        <AudioContain>
             <Audio audioUrl={`/Audio/${audio}`}/>
-            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${id}`}/>
-        </div>
+        </AudioContain>
     )
 }
