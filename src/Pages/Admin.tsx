@@ -198,7 +198,7 @@ export const Admin= () =>{
                     {AudioList.map((list)=>{
                         return <div>
                             <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`}/>
-                            <p>{list.AudioUrl}</p>
+                            <p>{list.AudioUrl.split('.')[0]}</p>
                         </div>
                     })}
                 </section>
