@@ -47,7 +47,10 @@ export const HeaderStyle= styled.header`
         position:fixed;
         top:12.5px;
         left:222px;
-        
+
+        @media (max-width: 820px){
+          left:60px;
+        };
       }
     
       img:hover {
@@ -61,6 +64,9 @@ export const HeaderStyle= styled.header`
         top:14px;
         left:318px;
         animation: ${Eclat(({bright}:Header)=>bright)} 1s ease-in;
+        @media (max-width: 820px){
+          left:157px;
+        };
       }
 
       button{ 
