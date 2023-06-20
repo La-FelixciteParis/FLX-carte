@@ -34,7 +34,7 @@ const App = () =>{
                 <Route path="/Admin" element={<Admin/>}/>
                 <Route path="/Admin/Carte/:id" element={<Carte/>}/>
                 <Route path="/Admin/Vitrophanie/:id" element={<Vitrophanie/>}/>
-                <Route path="/Audio/1" element={<AudioPage/>}/>
+                <Route path="/Audio/:id" element={<AudioPage/>}/>
               </Routes>
           </FormaPage>
           </CommerçantContextProvider>
