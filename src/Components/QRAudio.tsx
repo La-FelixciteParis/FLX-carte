@@ -14,7 +14,7 @@ export const QRAudio = ({list}:ListType)=>{
 
     return(
         <div>
-            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`}/>
+            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`} id="qr-canvas"/>
             <p>{list.AudioUrl.split('.')[0]}</p>
             <button onClick={downloadQR}>télécharger</button>
         </div>
