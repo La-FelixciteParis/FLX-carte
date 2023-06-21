@@ -136,10 +136,10 @@ export const GetIds = async() =>{
       .eq("id", id)
   }
 
-  export const Update=async(id:string,column:string,lien:string)=>{
+  export const Update=async(id:string,column:string,value:string)=>{
     await supabase
     .from('Identifiant')
-    .update({[column]:lien})
+    .update({[column]:value})
     .eq("id",id)
   }
 

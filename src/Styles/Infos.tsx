@@ -34,7 +34,7 @@ p{
     border-bottom: 2px solid #FFFFFF;
 }
 
-input{
+.InputColor{
     border:none;
     width:36px;
     height:36px;
@@ -98,7 +98,7 @@ div{
 }
 
 article{
-    width:300px;
+    min-width:300px;
     display:flex;
     flex-direction:column;
     align-items:center;

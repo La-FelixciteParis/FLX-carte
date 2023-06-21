@@ -31,6 +31,13 @@ export const Info = ()=>{
     const [addReseaux,setAddReseaux]=useState<string>('')
     const [plusReseaux,setPlusReseaux]=useState<boolean>(false)
     const [lien,setLien]=useState<string>('')
+    const [update,setUpdate]=useState<string | null>(null)
+    const [prénom,setPrénom]=useState<string>('')
+    const [nom,setNom]=useState<string>('')
+    const [besoin,setBesoin]=useState<string>('')
+    const [adresse,setAdresse]=useState<string>('')
+    const [tel,setTel]=useState<string>('')
+    const [email,setEmail]=useState<string>('')
 
     const {idUser,setIdUser,infoIdUser,logoutId,setIsCommerce} = useContext(UserContext) as any
     const {user,logoutCommerçant} = useContext(CommerçantContext) as any
@@ -51,6 +58,30 @@ export const Info = ()=>{
         if(client?.Image){
             const data =  donwload(client.Image)
             setImageUrl(data.publicUrl);  
+        }
+
+        if(client?.Prénom){
+            setPrénom(client.Prénom)
+        }
+
+        if(client?.Nom){
+            setNom(client.Nom)
+        }
+
+        if(client?.besoin){
+            setBesoin(client.besoin)
+        }
+
+        if(client?.adresse){
+            setAdresse(client.adresse)
+        }
+
+        if(client?.Tel){
+            setTel(client.Tel)
+        }
+
+        if(client?.email){
+            setEmail(client.email)
         }
     },[client])
 
@@ -160,6 +191,18 @@ export const Info = ()=>{
         setPlus(false)
     }
 
+    const handleChangeInfo = async(value:string) =>{
+        if(update==='Gérant'){
+           await Update(idUser,'Prénom',prénom)
+           await Update(idUser,'Nom',nom)   
+        }else{
+            await Update(idUser,`${update}`,value)
+        }
+
+        ClientFetch()
+        setUpdate(null)
+    }
+
     if (client){
         return (
             <InfoContain Primaire={primaire} Secondaire={secondaire} TextColor={textColor}>
@@ -169,11 +212,12 @@ export const Info = ()=>{
                 <section>
                     <article>
                         <h2>Vos informations personnelles</h2>
-                        {infoIdUser[1] !== "HBT" && <p>Gérant: {client.Prénom} {client.Nom}</p>}
-                        <p>Besoins: {client.besoin}</p>
-                        <p>Adresse: {client.adresse}</p>
-                        <p>Tel: {client.Tel}</p>
-                        <p>Email: {client.email}</p>
+                        {infoIdUser[1] !== "HBT" && update==='Gérant' ? <div><p>Gérant:</p> <Input text="Prénom" type="text" onChange={(e:any)=>setPrénom(e.target.value)} value={prénom}/> <Input text="Nom" type="text" onChange={(e:any)=>setNom(e.target.value)} value={nom}/> <button onClick={()=>handleChangeInfo('')}>valider</button></div>: <div><p>Gérant: {client.Prénom} {client.Nom}</p> <button onClick={()=>setUpdate('Gérant')}>modifier</button></div>}
+                        {update==="besoin" ? <div><p>Besoin:</p> <Input text="Besoin" type="text" onChange={(e:any)=>setBesoin(e.target.value)} value={besoin}/> <button onClick={()=>handleChangeInfo(besoin)}>Valider</button></div> : <div><p>Besoin: {client.besoin}</p> <button onClick={()=>setUpdate('besoin')}>modifier</button></div>}
+                        {update==="adresse" ? <div><p>Adresse:</p> <Input text="Adresse" type="text" onChange={(e:any)=>setAdresse(e.target.value)} value={adresse}/> <button onClick={()=>handleChangeInfo(adresse)}>Valider</button></div> : <div><p>Adresse: {client.adresse}</p> <button onClick={()=>setUpdate('adresse')}>modifier</button></div>}
+                        {update==="Tel" ? <div><p>Tel:</p> <Input text="Tel" type="text" onChange={(e:any)=>setTel(e.target.value)} value={tel}/> <button onClick={()=>handleChangeInfo(tel)}>Valider</button></div> : <div><p>Tel: {client.Tel}</p> <button onClick={()=>setUpdate('Tel')}>modifier</button></div>}
+                        {update==="email" ? <div><p>Email:</p> <Input text="Email" type="text" onChange={(e:any)=>setEmail(e.target.value)} value={email}/> <button onClick={()=>handleChangeInfo(email)}>Valider</button></div> : <div><p>Email: {client.email}</p> <button onClick={()=>setUpdate('email')}>modifier</button></div>}
+
                         <p>Liste des réseaux sociaux:</p>
                         <Ul>
                             {client.Linkedin && <a target="_blank" rel="noreferrer" href={client.Linkedin}><img src="/Images/LinkedIn_icon_circle.svg.png" alt="Linkedin"/></a>}
@@ -222,15 +266,15 @@ export const Info = ()=>{
                         <div className="Couleurs">
                             <div className="Couleur">
                                 <label htmlFor="Primaire">-Primaire:</label>
-                                <input type='color' disabled={commerce} name="Primaire" value={primaire} onChange={handlePrimaireChange}/>
+                                <input className="InputColor" type='color' disabled={commerce} name="Primaire" value={primaire} onChange={handlePrimaireChange}/>
                             </div>
                             <div className="Couleur">
                                 <label htmlFor="Secondaire">-Secondaire:</label>
-                                <input type='color' disabled={commerce} name="Secondaire" value={secondaire} onChange={handleSecondaireChange}/>
+                                <input className="InputColor" type='color' disabled={commerce} name="Secondaire" value={secondaire} onChange={handleSecondaireChange}/>
                             </div>
                             <div className="Couleur">
                                 <label htmlFor="Text">-Texte sur aplat:</label>
-                                <input type='color' disabled={commerce} name="Text" value={textColor} onChange={handleTextChange}/>
+                                <input className="InputColor" type='color' disabled={commerce} name="Text" value={textColor} onChange={handleTextChange}/>
                             </div>
                             {!commerce && <button onClick={handleCouleurSave} disabled={client.Couleur===primaire && client.CouleurSec===secondaire && client.TextColor===textColor } style={{borderColor: primaire}}>Sauvegarder</button>}
                         </div>
