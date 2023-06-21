@@ -11,7 +11,7 @@ import { InfoContain } from "../Styles/Infos"
 import { UserType } from "../Types/User"
 import { Ul } from "../Styles/Commerce"
 import { ListEvenements } from "../Components/Evenements"
-import { Upload, donwload } from "../API/Supabase/Images"
+import { RemoveImage, Upload, donwload } from "../API/Supabase/Images"
 import { UploadLoad } from "../Components/UploadLoad"
 import { Input } from "../Components/Input"
 
@@ -57,7 +57,8 @@ export const Info = ()=>{
         
         if(client?.Image){
             const data =  donwload(client.Image)
-            setImageUrl(data.publicUrl);  
+            setImageUrl(data.publicUrl);
+             
         }
 
         if(client?.Prénom){
@@ -151,6 +152,10 @@ export const Info = ()=>{
     const handleUploadImage = async() =>{
         
         if(image && id){
+                    
+            if(client?.Image){
+                RemoveImage(client?.Image)
+            }
             setLoadImage(true)
             const Data = await Upload(image)
             const path=Data?.path

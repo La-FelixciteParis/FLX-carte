@@ -25,3 +25,10 @@ const { data } =  supabase
 return data
 
 }
+
+export const RemoveImage= (path:string)=>{
+   supabase
+  .storage
+  .from('Images')
+  .remove([path])
+}
