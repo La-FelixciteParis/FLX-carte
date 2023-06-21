@@ -9,6 +9,7 @@ import { ValidAdmin } from "../API/Supabase/Admin"
 import { GetACT } from "../API/Supabase/User"
 import { AudioList } from "../Liste audio/Audio"
 import { QRCodeCanvas } from "qrcode.react"
+import { QRAudio } from "../Components/QRAudio"
 
 export const Admin= () =>{
 
@@ -196,10 +197,7 @@ export const Admin= () =>{
                 <h2>QR Audio</h2>
                 <section>
                     {AudioList.map((list)=>{
-                        return <div>
-                            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`}/>
-                            <p>{list.AudioUrl.split('.')[0]}</p>
-                        </div>
+                        return <QRAudio list={list}/>
                     })}
                 </section>
             </AdminContain>
