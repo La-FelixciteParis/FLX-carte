@@ -26,6 +26,7 @@ export const AudioPage = () =>{
     return(
         <AudioContain>
             <Audio audioUrl={`/Audio/${audio}`}/>
+            <p>{audio.split(".")[1]}</p>
         </AudioContain>
     )
 }
