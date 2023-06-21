@@ -8,7 +8,6 @@ import { QrpropsType } from "../Types/QR"
 import { ValidAdmin } from "../API/Supabase/Admin"
 import { GetACT } from "../API/Supabase/User"
 import { AudioList } from "../Liste audio/Audio"
-import { QRCodeCanvas } from "qrcode.react"
 import { QRAudio } from "../Components/QRAudio"
 
 export const Admin= () =>{
@@ -197,7 +196,7 @@ export const Admin= () =>{
                 <h2>QR Audio</h2>
                 <section>
                     {AudioList.map((list)=>{
-                        return <QRAudio list={list}/>
+                        return <QRAudio list={list} key={list.AudioId}/>
                     })}
                 </section>
             </AdminContain>
