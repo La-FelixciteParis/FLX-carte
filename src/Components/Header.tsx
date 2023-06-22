@@ -78,7 +78,7 @@ export const Header = ()=>{
         const height = window.innerHeight
         
         
-        if(scrollTop>=height-20 || location.pathname.split("/")[1]!== "Commerce"){
+        if(scrollTop>=height-70 || location.pathname.split("/")[1]!== "Commerce"){
             setScroll(true);   
         }else{
             setScroll(false)

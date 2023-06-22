@@ -38,7 +38,7 @@ export const HeaderStyle= styled.header`
     max-height: 72px;
     overflow: hidden;
     z-index:2;
-    transition:1s;
+    transition:2s;
 
     .logo {
         width: 125px;

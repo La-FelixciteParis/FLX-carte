@@ -60,7 +60,7 @@ export const Commerce = () =>{
             const height = window.innerHeight
             
             
-            if(scrollTop>=height-20){
+            if(scrollTop>=height-70){
                 setScroll(true);   
             }else{
                 setScroll(false)
