@@ -117,6 +117,14 @@ article{
         }
     }
 
+    .Description{
+        max-width:300px;
+        textarea{
+            width:250px;
+            height:300px;
+        };
+    }
+
     
 
     @media (max-width: 700px){

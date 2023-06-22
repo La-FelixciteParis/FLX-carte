@@ -177,7 +177,6 @@ export const Commerce = () =>{
                             <li>Gérant: {commerce.Prénom} {commerce.Nom}</li> <br/>
                             {commerce.email && <><li><a href={`mailto:${commerce.email}`}>{commerce.email}</a></li><br/></>}
                             {commerce.Tel && <><li>{commerce.Tel}</li><br/></>}
-                            <li>{commerce.SiteWeb && <a target="_blank" rel="noreferrer" href={commerce.SiteWeb}>Plus d'infos</a>}</li>
                         </ul>
 
                         <Ul>
@@ -188,6 +187,11 @@ export const Commerce = () =>{
                             {commerce.TikTok && <a target="_blank" rel="noreferrer" href={commerce.TikTok}><img src="/Images/tiktok.png" alt="TikTok"/></a>}  
                             {commerce.GoogleBusiness && <a target="_blank" rel="noreferrer" href={commerce.GoogleBusiness}><img src="/Images/GoogleBusiness.png" alt="GoogleBusiness"/></a>}   
                         </Ul>
+
+                        <ul>
+                            <li>{commerce.SiteWeb && <a target="_blank" rel="noreferrer" href={commerce.SiteWeb}>Plus d'infos</a>}</li>
+                        </ul>
+                        
                     </div>
                     <div>
                         {commerce.Description && commerce.Description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p key={id}>{line}</p>}})}

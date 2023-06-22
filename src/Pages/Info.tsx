@@ -14,6 +14,7 @@ import { ListEvenements } from "../Components/Evenements"
 import { RemoveImage, Upload, donwload } from "../API/Supabase/Images"
 import { UploadLoad } from "../Components/UploadLoad"
 import { Input } from "../Components/Input"
+import { TextArea } from "../Components/TextArea"
 
 export const Info = ()=>{
 
@@ -38,6 +39,7 @@ export const Info = ()=>{
     const [adresse,setAdresse]=useState<string>('')
     const [tel,setTel]=useState<string>('')
     const [email,setEmail]=useState<string>('')
+    const [description,setDescription] = useState<string>('')
 
     const {idUser,setIdUser,infoIdUser,logoutId,setIsCommerce} = useContext(UserContext) as any
     const {user,logoutCommerçant} = useContext(CommerçantContext) as any
@@ -83,6 +85,10 @@ export const Info = ()=>{
 
         if(client?.email){
             setEmail(client.email)
+        }
+
+        if(client?.Description){
+            setDescription(client.Description)
         }
     },[client])
 
@@ -294,7 +300,10 @@ export const Info = ()=>{
                         <p>QRCode Activité</p>
                         </>}
                         <QRCodeCanvas value={`${process.env.REACT_APP_URL}User/${client.id}`}/>
-
+                        
+                        <h2>Description</h2>
+                        {update==="Description" ? <div className="Description"><TextArea onChange={(e:any)=>{setDescription(e.target.value)}} text="Description" value={description}/>
+                        <button onClick={()=>handleChangeInfo(description)}>Valider</button></div> :<div className="Description"><p>{client.Description}</p> <button onClick={()=>setUpdate('Description')}>modifier</button></div>}
                     </article>
                 </section>
                 <div className="Gerance">

@@ -1,4 +1,4 @@
-import { InputType } from "../Types/Input"
+import { InputType } from "../Types/Input_TextArea"
 
 export const Input = ({text,type,onChange,value}:InputType)=>{
     return(
