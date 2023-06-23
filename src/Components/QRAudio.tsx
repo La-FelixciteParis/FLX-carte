@@ -4,7 +4,7 @@ import { ListType } from "../Types/Audio"
 export const QRAudio = ({list}:ListType)=>{
 
     const downloadQR = async() =>{
-            const qrCanvas = document.getElementById("qr-canvas") as any;
+            const qrCanvas = document.getElementById(`qr-canvas${list.AudioId}`) as any;
               const dataUrl = qrCanvas.toDataURL("image/png");
               const downloadLink = document.createElement("a");
               downloadLink.href = dataUrl;
@@ -14,7 +14,7 @@ export const QRAudio = ({list}:ListType)=>{
 
     return(
         <div>
-            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`} id="qr-canvas"/>
+            <QRCodeCanvas value={`${process.env.REACT_APP_URL}Audio/${list.AudioId}`} id={`qr-canvas${list.AudioId}`}/>
             <p>{list.AudioUrl.split('.')[0]}</p>
             <button onClick={downloadQR}>télécharger</button>
         </div>
