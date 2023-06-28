@@ -54,7 +54,6 @@ export const Email = () => {
           <option value=''>Choisir</option>
           <option value="Thomas-Dev">Dev</option>
           <option value="Karen">Karen</option>
-          <option value='erreur'>ERREUR</option>
         </select>
             <label>Name</label>
             <input type="text" name="user_name" onChange={(e)=>setName(e.target.value)} value={name} />
