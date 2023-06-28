@@ -15,6 +15,7 @@ import { Evenement } from "./Pages/Evenement";
 import { Carte } from "./Pages/Carte";
 import { Vitrophanie } from "./Pages/Vitrophanie";
 import { AudioPage } from "./Pages/AudioPage";
+import { Email } from "./Pages/Email";
 
 const App = () =>{
   return(
@@ -35,6 +36,7 @@ const App = () =>{
                 <Route path="/Admin/Carte/:id" element={<Carte/>}/>
                 <Route path="/Admin/Vitrophanie/:id" element={<Vitrophanie/>}/>
                 <Route path="/Audio/:id" element={<AudioPage/>}/>
+                <Route path="/Email" element={<Email/>}/>
               </Routes>
           </FormaPage>
           </CommerçantContextProvider>

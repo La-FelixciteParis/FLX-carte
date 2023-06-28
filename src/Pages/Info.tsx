@@ -310,7 +310,7 @@ export const Info = ()=>{
                     <h3>Gérer ma page commerce</h3>
                     <div>
                         <button>Moi même</button>
-                        <button>Par l'Admin</button>
+                        <button onClick={()=>navigate('/Email')}>Par l'Admin</button>
                     </div>
                 </div>
 
