@@ -1,14 +1,20 @@
+
+/* import Base */
 import { BrowserRouter, Routes,Route } from "react-router-dom";
-import { FormaPage } from "./Components/FormatPage";
+
+/*import context*/
 import { CommerçantContextProvider } from "./Context/Commercant";
 import { UserContextProvider } from "./Context/IdUser";
+
+/*import Component */
+import { FormaPage } from "./Components/FormatPage";
+
+/*import pages */
 import { Connect } from "./Pages/Connect";
 import { Info } from "./Pages/Info";
 import { LoginCommerçant } from "./Pages/LoginCommerçant";
-import Global from "./Styles/Général";
 import { Admin } from "./Pages/Admin";
 import { Commerce } from "./Pages/Commerce";
-import 'leaflet/dist/leaflet.css'
 import { Home } from "./Pages/Home";
 import { Village } from "./Pages/Village";
 import { Evenement } from "./Pages/Evenement";
@@ -17,14 +23,20 @@ import { Vitrophanie } from "./Pages/Vitrophanie";
 import { AudioPage } from "./Pages/AudioPage";
 import { Email } from "./Pages/Email";
 
+/*import style */
+import Global from "./Styles/Général";
+import 'leaflet/dist/leaflet.css'
+
+
 const App = () =>{
   return(
     <BrowserRouter>
-      <Global/>
 
-      <UserContextProvider>
+      <Global/> {/*Style global */}
 
-          <CommerçantContextProvider>
+      {/*Contect */}
+      <UserContextProvider>{/*Contexte utilisateur */}
+          <CommerçantContextProvider>{/*Contexte Commerçant */}
 
             {/* Mais le header et le footer */}
             <FormaPage>  
@@ -53,9 +65,12 @@ const App = () =>{
                 <Route path="/Audio/:id" element={<AudioPage/>}/> {/*  QRcode audio */}
 
               </Routes>
+
           </FormaPage>
+
           </CommerçantContextProvider>
       </UserContextProvider>
+
     </BrowserRouter>
   )
 }
