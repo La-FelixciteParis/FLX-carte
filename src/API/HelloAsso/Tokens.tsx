@@ -1,3 +1,5 @@
+// A voir : récupération de nouveau membre pour alimenter le back auto possible !
+
 export const CreateToken = async()=>{
     
     const request = await fetch('https://api.helloasso.com/oauth2/token',{

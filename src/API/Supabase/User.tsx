@@ -1,6 +1,10 @@
-import { UserInfoType, UserType } from "../../Types/User"
+//Back user et commerçant
+
+import { UserInfoType, UserType } from "../../Types/User" /*Import type pour les user */
 import supabase from "./client"
 
+
+//Récupérer un user par son id (FLX-ect...)
 export const UserParIdentifiant = async (id:string) =>{
       
       const { data: Identifiant, error } = await supabase.from('Identifiant').select().eq('id',id)
@@ -13,6 +17,7 @@ export const UserParIdentifiant = async (id:string) =>{
       
 }
 
+//Récupérer un user avec son mail
 export const UserIdParLogin = async(email:string)=>{
   let { data: Identifiant, error } = await supabase.from('Identifiant').select().eq('email',email)
   if(Identifiant){
@@ -23,6 +28,7 @@ export const UserIdParLogin = async(email:string)=>{
   }
 }
 
+//Créer un commerce/une activité (pas encore mis en place mais présent)
 // export const ACTCreate = async(body:UserInfoType)=>{
 //   let { data, error } = await supabase.auth.signUp({
 //     email: body.email,
@@ -30,6 +36,8 @@ export const UserIdParLogin = async(email:string)=>{
 //   })
 // }
 
+
+//Login
 export const LoginACT = async(body:UserInfoType)=>{
   
   let { data, error } = await supabase.auth.signInWithPassword({
@@ -46,6 +54,7 @@ export const LoginACT = async(body:UserInfoType)=>{
   
 }
 
+//Récupérer user avec le token
 export const GetACT = async(token:string)=>{
 
 const { data: { user },error } = await supabase.auth.getUser(token)
@@ -57,6 +66,8 @@ return user
 
 }
 
+
+//modifier les couleur d'un user
 export const ChangeColorUser = async (color:string,color2:string,textColor:string,id:string)=>{
   const { data, error } = await supabase
   .from('Identifiant')
@@ -70,6 +81,7 @@ export const ChangeColorUser = async (color:string,color2:string,textColor:strin
   return data
 }
 
+//Récupérer touut les ids
 export const GetIds = async() =>{
     
     let { data: Identifiant, error } = await supabase.from('Identifiant').select('id,COM_ACTnom,QrDl,QrDlCom')
@@ -80,6 +92,8 @@ export const GetIds = async() =>{
     }
 }
 
+
+//Log en admin
   export const LoginAdmin = async(body:UserInfoType)=>{
 
       let { data, error } = await supabase.auth.signInWithPassword({
@@ -94,6 +108,7 @@ export const GetIds = async() =>{
       }
   }
 
+  //Valider qu'un qr perso est dl
   export const ValidDl = async(id:string)=>{
       await supabase
       .from('Identifiant')
@@ -101,6 +116,7 @@ export const GetIds = async() =>{
       .eq("id", id)
   }
 
+  //Velider qu'un qr commerce est dl
   export const ValidDlCom = async(id:string)=>{
     await supabase
     .from('Identifiant')
@@ -108,10 +124,14 @@ export const GetIds = async() =>{
     .eq("id", id)
 }
 
+
+//modifier la description du user
   export const UpdateDesc= async(text:string,id:string)=>{
     await supabase.from('Identifiant').update({"Description":text}).eq("id",id)
   }
 
+
+  //récupère les commerce d'un village
   export const CommerceParVillage=async(regex:RegExp)=>{
     let {data:Commerces,error} = await supabase.from('Identifiant').select()
 
@@ -129,6 +149,8 @@ export const GetIds = async() =>{
     
   }
 
+
+  //modifie l'image du user
   export const UpdateImageUser= async(id:string,path:string)=>{
     await supabase
       .from('Identifiant')
@@ -136,6 +158,7 @@ export const GetIds = async() =>{
       .eq("id", id)
   }
 
+  //modifie un colomn d'un user
   export const Update=async(id:string,column:string,value:string)=>{
     await supabase
     .from('Identifiant')
@@ -143,6 +166,7 @@ export const GetIds = async() =>{
     .eq("id",id)
   }
 
+  //créer un user si il n'existe pas
   export const UserCreate=async(body:UserType)=>{
     const {data:id,error} = await supabase
     .from('Identifiant')

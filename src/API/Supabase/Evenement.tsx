@@ -1,5 +1,8 @@
+// Back Evenement
+
 import supabase from "./client"
 
+// Récupérer les évènement lié à un village
 export const GetEvenements = async (idVillage:string) =>{
     let { data: evenement, error } = await supabase
   .from('evenement')
@@ -15,6 +18,7 @@ export const GetEvenements = async (idVillage:string) =>{
   
 }
 
+//Récupérer Evenement lié à un commerce/une activité
 export const GetEvenement = async (id:string) =>{
   let {data,error} = await supabase
   .from('evenement')
@@ -27,6 +31,7 @@ export const GetEvenement = async (id:string) =>{
   }
 }
 
+//Tables lien entre evenement et village ou commerce
 export const GetLink = async (link:string,id:string)=>{
   let {data:Link,error} = await supabase
   .from(link)

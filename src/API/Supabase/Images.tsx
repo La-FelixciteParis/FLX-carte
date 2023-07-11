@@ -1,5 +1,8 @@
+//Back image
+
 import supabase from "./client"
 
+//Upload une image dans le storage
 export const Upload = async(File:File)=>{
   const FilePath = `${File.name}`;
   const { data: image, error } = await supabase.storage
@@ -16,6 +19,8 @@ export const Upload = async(File:File)=>{
   
 }
 
+
+//Recupère l'image dans le storage
 export const donwload = (path:string)=>{
   
 const { data } =  supabase
@@ -26,6 +31,8 @@ return data
 
 }
 
+
+//Efface une image dans le storage
 export const RemoveImage= (path:string)=>{
    supabase
   .storage

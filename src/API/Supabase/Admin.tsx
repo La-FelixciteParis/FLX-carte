@@ -1,3 +1,5 @@
+// Validation que l'utilisateur est admin (page admin) 
+
 import supabase from "./client"
 
 export const ValidAdmin = async(id:any)=>{

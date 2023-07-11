@@ -1,5 +1,9 @@
+//Back Village
+
 import supabase from "./client"
 
+
+//Récupère un village
 export const GetVillage= async (villageid:string)=>{
 
     let { data: Village, error } = await supabase
