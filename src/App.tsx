@@ -21,22 +21,37 @@ const App = () =>{
   return(
     <BrowserRouter>
       <Global/>
+
       <UserContextProvider>
+
           <CommerçantContextProvider>
-            <FormaPage>
+
+            {/* Mais le header et le footer */}
+            <FormaPage>  
+
               <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/Connect" element={<Connect/>}/>
-                <Route path="/User/:id" element={<Info/>}/>
-                <Route path="/Commerce/:id" element={<Commerce/>}/>
-                <Route path="/Login" element={<LoginCommerçant/>}/>
-                <Route path="/Village" element={<Village/>}/>
-                <Route path="/Evenement/:id" element={<Evenement/>}/>
-                <Route path="/Admin" element={<Admin/>}/>
-                <Route path="/Admin/Carte/:id" element={<Carte/>}/>
-                <Route path="/Admin/Vitrophanie/:id" element={<Vitrophanie/>}/>
-                <Route path="/Audio/:id" element={<AudioPage/>}/>
-                <Route path="/Email" element={<Email/>}/>
+
+                {/*homepage */}
+                <Route path="/" element={<Home/>}/>  {/* Pas encore fait r'envoie au connect de base */}
+
+                {/*Log */}
+                <Route path="/Connect" element={<Connect/>}/> {/*connection manuel/PC */}
+                <Route path="/Login" element={<LoginCommerçant/>}/> {/* log des commerçant */}
+
+                {/*Page d'information */}
+                <Route path="/User/:id" element={<Info/>}/> {/* page perso */}
+                <Route path="/Commerce/:id" element={<Commerce/>}/>  {/* page commerçant */}
+                <Route path="/Village" element={<Village/>}/>{/* page village */}
+                <Route path="/Evenement/:id" element={<Evenement/>}/> {/* page Evenement */}
+
+                <Route path="/Email" element={<Email/>}/>{/*Envoie email aide */}
+
+                {/* page Admin */}
+                <Route path="/Admin" element={<Admin/>}/> {/*Admin central */}
+                <Route path="/Admin/Carte/:id" element={<Carte/>}/> {/* Carte auto */}
+                <Route path="/Admin/Vitrophanie/:id" element={<Vitrophanie/>}/> {/* vitrophanie auto */}
+                <Route path="/Audio/:id" element={<AudioPage/>}/> {/*  QRcode audio */}
+
               </Routes>
           </FormaPage>
           </CommerçantContextProvider>
