@@ -1,10 +1,17 @@
+//Renvoie une card Evenement  , Toujours en travaux , possible à modifier
 
+//Import de base
 import { useEffect, useState } from "react"
-import { Evenement } from "../Types/Evenement"
-import { donwload } from "../API/Supabase/Images"
-import { EvenementContain } from "../Styles/Evenement"
 import { useNavigate } from "react-router-dom"
 
+//Import Type
+import { Evenement } from "../Types/Evenement"
+
+//Import API
+import { donwload } from "../API/Supabase/Images"
+
+//Import styles
+import { EvenementContain } from "../Styles/Evenement"
 
 export const EvenementList = ({evenement}:Evenement) =>{
 
@@ -13,6 +20,7 @@ export const EvenementList = ({evenement}:Evenement) =>{
     const navigate= useNavigate()
 
     useEffect(()=>{
+        //Récupère l'image dans le storage de l'évènement
         if(evenement.Image){
             const data =  donwload(evenement.Image)
             setImage(data.publicUrl)
@@ -20,6 +28,7 @@ export const EvenementList = ({evenement}:Evenement) =>{
     },[evenement])
 
     const handleEvenementClick= ()=>{
+        //Renvoie vers la page de l'evenement
         navigate(`/Evenement/${evenement.id}`)
     }
     
@@ -28,6 +37,7 @@ export const EvenementList = ({evenement}:Evenement) =>{
         {evenement.noAffiche && <><h3>{evenement.nom}</h3>
         <div className="Description">
             {evenement.description.split('\n').map((line,id)=>{if(line===""){return <br key={id}/>}else{return <p className="InfoEvenement" key={id}>{line}</p>}})}
+            {/*Permet de retranscire la description en prenant en comptre les saut de ligne  le \n correspond à ce dernier*/}
         </div>
         <div>
             <small> du {evenement.dateDébut}</small>
