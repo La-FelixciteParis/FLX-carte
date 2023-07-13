@@ -1,6 +1,16 @@
+//Retourne le Footer
+
+
+//Import de base
 import { useContext, useEffect, useState } from "react"
+
+//Import context user
 import { UserContext } from "../Context/IdUser"
+
+//Import les couleurs des cart et celle de base {à modifier avec la charte graphique}
 import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
+
+//Import du style
 import { FooterStyle } from "../Styles/Footer"
 
 export const Footer = ()=>{
@@ -12,6 +22,8 @@ export const Footer = ()=>{
     const {infoIdUser} = useContext(UserContext) as any
 
     useEffect(()=>{
+
+        //Definie une couleur en fonction de sur quel type de user on est
         if(infoIdUser){
             const carte = infoIdUser[1]
             if (carte==="ACT") {
