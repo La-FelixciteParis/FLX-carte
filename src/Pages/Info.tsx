@@ -300,7 +300,7 @@ export const Info = ()=>{
                         <p>QRCode Activité</p>
                         </>}
                         <QRCodeCanvas value={`${process.env.REACT_APP_URL}User/${client.id}`}/>
-                        <button style={{marginTop: "30px"}} onClick={()=>navigate(`/Commerce/${id}`)}>Voir ma page</button>
+                        <button className="naviguecommerce" onClick={()=>navigate(`/Commerce/${id}`)}>Voir ma page</button>
                         <h2>Description</h2>
                         {update==="Description" ? <div className="Description"><TextArea onChange={(e:any)=>{setDescription(e.target.value)}} text="Description" value={description}/>
                         <button onClick={()=>handleChangeInfo(description)}>Valider</button></div> :<div className="Description"><p>{client.Description}</p> <button onClick={()=>setUpdate('Description')}>modifier</button></div>}
