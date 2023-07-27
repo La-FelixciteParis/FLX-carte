@@ -27,6 +27,7 @@ import { Email } from "./Pages/Email";
 import Global from "./Styles/Général";
 import 'leaflet/dist/leaflet.css'
 import { Evenements } from "./Pages/Evenements";
+import { ACPB } from "./Pages/ACPB";
 
 
 const App = () =>{
@@ -44,8 +45,9 @@ const App = () =>{
 
               <Routes>
 
-                {/*homepage */}
-                <Route path="/" element={<Home/>}/>  {/* Pas encore fait r'envoie au connect de base */}
+                {/*homepage et pres*/}
+                <Route path="/" element={<Home/>}/>  {/* Homepage : Presentation de la FLX */}
+                <Route path="/ACPB" element={<ACPB/>}/> {/*Presentation de l'ACPB */}
 
                 {/*Log */}
                 <Route path="/Connect" element={<Connect/>}/> {/*connection manuel/PC */}

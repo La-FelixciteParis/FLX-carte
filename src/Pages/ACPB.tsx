@@ -1,10 +1,9 @@
-
 import { InfoContain } from "../Styles/Infos"
 
-export const Home = () =>{
+export const ACPB = () =>{
     return(
         <InfoContain>
-            <h1>FLX</h1>
+            <h1>ACPB</h1>
         </InfoContain>
     )
 }
