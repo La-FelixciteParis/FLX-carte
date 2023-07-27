@@ -1,3 +1,7 @@
+//Renvoie un loader le temps d'upload une image
+
+
+//import style
 import { LoadUpload } from "../Styles/Loader"
 
 export const UploadLoad = () =>{
