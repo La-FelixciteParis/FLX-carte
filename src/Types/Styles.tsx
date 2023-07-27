@@ -13,5 +13,5 @@ export interface Background{
 export interface Header{
     color?:string,
     headerAppear?:boolean,
-    bright:number
+    bright?:number
 }

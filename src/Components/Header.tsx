@@ -16,7 +16,7 @@ import { UserContext } from "../Context/IdUser"
 //Style
 import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
 import { ButtonStyle } from "../Styles/Général"
-import { HeaderStyle } from "../Styles/Header"
+import { HeaderStyle, MenuBurger } from "../Styles/Header"
 
 export const Header = ()=>{
     
@@ -24,7 +24,7 @@ export const Header = ()=>{
     const [color,setColor]= useState<string>(Principal)
     const [scrollTop, setScrollTop] = useState<number>(0);
     const [scroll,setScroll]=useState<boolean>(false)
-
+    const [showMenu,setShowMenu] = useState<boolean>(false)
 
     const {infoIdUser,idUser,isCommerce,logoutId} = useContext(UserContext) as any
     const {logoutCommerçant} = useContext(CommerçantContext) as any
@@ -106,6 +106,7 @@ export const Header = ()=>{
         }
         
     },[scrollTop])
+    
 
     return(
 
@@ -113,11 +114,21 @@ export const Header = ()=>{
         <HeaderStyle color={color} headerAppear={scroll} bright={scroll ? 0.5 : 3}>
             <img className="logo" src="/Images/LogoEtoileFlx.png" alt="Logo Félixcité" onClick={handleHomeClick}/>
             <img className="anime" src="/Images/éclat.png" alt="éclat"/>
-            {isCommerce ? <ButtonStyle color={color}><a href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Rejoindre</a></ButtonStyle>
+            <nav>
+                <MenuBurger headerAppear={scroll} >
+                    <button className={showMenu? "show_bar" : "none"} onClick={()=>setShowMenu(!showMenu)}>
+                        <span></span>
+                    </button>
+                </MenuBurger>
+            <p className="menu" onClick={()=>navigate('/Connect')}>se connecter</p>
+            <p className="menu" onClick={()=>navigate(`/Village/?Village=${location.pathname.split("/")[2].split("-")[2]}`)}>Les Villages</p>
+            <p className="menu" onClick={()=>navigate(('/Evenements'))}>Agenda</p>
+            {isCommerce ? <ButtonStyle color={color}><a className="adhésion" href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Adhérer</a></ButtonStyle>
              : 
             idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
              : 
             <ButtonStyle color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>}
+            </nav>
         </HeaderStyle>
     )
 }

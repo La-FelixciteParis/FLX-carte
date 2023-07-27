@@ -60,17 +60,16 @@ export const Commerce = () =>{
 
     return (
         <>
-        <Visuel backgroundUrl={image} color={commerce.TextColor} colorSec={commerce.Couleur}>
-            <h1>{commerce.COM_ACTnom}</h1>
-        </Visuel>
+        <Visuel backgroundUrl={image} color={commerce.TextColor} colorSec={commerce.Couleur}/>
         <CommerceContain Primaire={commerce.Couleur} Secondaire={commerce.CouleurSec} TextColor={commerce.TextColor}>
             <section>
 
-                <h2>{commerce.Artisant && "Artisant"} {commerce.métier}</h2>
+                <h1>{commerce.Artisant && "Artisant"} {commerce.métier}</h1>
 
                 <article className="infos">
                     
                     <div className="InfoCom">
+                        <p>{commerce.COM_ACTnom}</p>
                         {commerce.adresse && <p>{commerce.adresse}</p>}
                         <p className="Village" onClick={()=>{navigate(`/Village?Village=${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
                         

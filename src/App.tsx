@@ -26,6 +26,7 @@ import { Email } from "./Pages/Email";
 /*import style */
 import Global from "./Styles/Général";
 import 'leaflet/dist/leaflet.css'
+import { Evenements } from "./Pages/Evenements";
 
 
 const App = () =>{
@@ -54,8 +55,8 @@ const App = () =>{
                 <Route path="/User/:id" element={<Info/>}/> {/* page perso */}
                 <Route path="/Commerce/:id" element={<Commerce/>}/>  {/* page commerçant */}
                 <Route path="/Village" element={<Village/>}/>{/* page village */}
-                <Route path="/Evenement/:id" element={<Evenement/>}/> {/* page Evenement */}
-
+                <Route path="/Evenements" element={<Evenements/>}/> {/*Pages des Evenements */}
+                <Route path="/Evenement/:id" element={<Evenement/>}/> {/* page d'un Evenement */}
                 <Route path="/Email" element={<Email/>}/>{/*Envoie email aide */}
 
                 {/* page Admin */}

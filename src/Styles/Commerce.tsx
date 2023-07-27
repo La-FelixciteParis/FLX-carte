@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Principal } from "./Couleur";
-import { Background, Couleur, Header } from "../Types/Styles";
+import { Background, Couleur } from "../Types/Styles";
 
 export const WidthUp = keyframes`
     0%{
@@ -31,77 +31,6 @@ export const UnderlineAnimEnd= keyframes`
     100%{
         width:0;
         margin-left:100%;
-    }
-`
-
-export const MenuBurger=styled.div`
-    position:fixed;
-    top:16px;
-    left:16px;
-    z-index:3;
-
-    .show_bar {
-        span{
-            width:0;
-            background:transparent;
-            &:before{
-                transform: rotate(45deg);
-            };
-
-            &:after{
-                transform: rotate(-45deg);
-            };
-        };
-    };
-
-    button{
-        border:none;
-        background:none;
-        width:40px;
-        height:40px;
-        padding:0;
-
-        span{
-            width: 40px;
-            background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
-            height:3px;
-            display:block;
-            position:relative;
-            border-radius:3px;
-            transition: all .5s ease-in-out;
-
-            &:after{
-                content: "";
-                position: absolute;
-                left: 0;
-                width: 40px;
-                background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
-                height:3px;
-                display:block;
-                border-radius:3px;
-                transform: translateY(15.5px);
-                transition: all .5s ease-in-out;
-
-            };
-
-            &:before{
-                content: "";
-                position: absolute;
-                left: 0;
-                width:40px;
-                background:${({headerAppear}:Header)=>headerAppear ? 'black' : 'white'};
-                height:3px;
-                display:block;
-                border-radius:3px;
-                transform: translateY(-15.5px);
-                transition: all .5s ease-in-out;
-
-            };
-        };
-
-        :hover{
-            cursor:pointer;
-        }
     }
 `
 
