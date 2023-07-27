@@ -1,14 +1,29 @@
+//Page Admin
+
+//Import
+
+//Base
 import { useEffect, useState } from "react"
-import { Input } from "../Components/Input"
-import { Form, FormContain } from "../Styles/Connect"
-import { AdminContain } from "../Styles/Admin"
-import { GetIds, LoginAdmin, UserCreate } from "../API/Supabase/User"
-import { QrCodeDl } from "../Components/DlQRCode"
-import { QrpropsType } from "../Types/QR"
+
+//Api
 import { ValidAdmin } from "../API/Supabase/Admin"
 import { GetACT } from "../API/Supabase/User"
-import { AudioList } from "../Liste audio/Audio"
+import { GetIds, LoginAdmin, UserCreate } from "../API/Supabase/User"
+
+//style
+import { Form, FormContain } from "../Styles/Connect"
+import { AdminContain } from "../Styles/Admin"
+
+//Type
+import { QrpropsType } from "../Types/QR"
+
+//Components
+import { QrCodeDl } from "../Components/DlQRCode"
+import { Input } from "../Components/Input"
 import { QRAudio } from "../Components/QRAudio"
+
+//Liste des audio
+import { AudioList } from "../Liste audio/Audio"
 
 export const Admin= () =>{
 
@@ -41,12 +56,17 @@ export const Admin= () =>{
     },[])
 
     const Ids = async() =>{
+
+        //Récupération de tout les IDs
         const data = await GetIds()
         if(data){
             setIds(data);
         }
+
+        //Si il y à déjà la perm admin en storage on la récupère et on valid l'acces, sinon on le refuse
         const LocalAdmin = localStorage.getItem('AdminPerm')
         if(LocalAdmin){
+            //on vérifie que l'admin récupéré en local est valide
             const Admin= await GetACT(LocalAdmin)
             if(Admin){
                 setValid(true)
@@ -59,6 +79,7 @@ export const Admin= () =>{
     }
 
     const HandleValidSubmit = async(e:any) =>{
+        //Connexion à l'admin
         e.preventDefault()
         setError(null)
         const body={
@@ -66,8 +87,10 @@ export const Admin= () =>{
             password:mdp
         }
         const data= await LoginAdmin(body)
+
+        //Si la connexion renvoie un user on vérifie si il est admin, sinon c'est qu'il n'existe pas
         if(typeof data === "object"){
-            
+            //vérification que le user est admin, sinon il est non autorisé
             const validation=await ValidAdmin(data.user?.id);
             if(validation && validation.length>0){
                 setValid(true)
@@ -84,6 +107,8 @@ export const Admin= () =>{
     }
 
     const RemiseAZero = ()=>{
+
+        //Une fois un nouveau membre créé , reset le formulaire et recharge les IDs pour l'afficher
         setCarte("")
         setVillage("")
         setAssoc("")
@@ -96,6 +121,8 @@ export const Admin= () =>{
     }
 
     const NewId = async(e:any)=>{
+
+        //Création d'un membre
         e.preventDefault()
         const body = {
             id: `FLX-${carte}-${village}-${assoc}-${numéro}`,
@@ -112,21 +139,27 @@ export const Admin= () =>{
 
     return (
     <>
+        {/*Si l'acces admin est valider on affiche la page */}
         {valid ? 
             <AdminContain>
+                {/*Liste des Cartes */}
                 <h2>Pas encore DL</h2>
+                {/*Carte non DL*/}
                 <section>
                     {ids.map((id)=>{
                             return(!id.QrDl && <QrCodeDl id={id.id} route="User/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={`UserPasDl${id.COM_ACTnom}`} onReload={Ids} user/>)              
                     })}
                 </section>
                 <h2>Déjà DL</h2>
+                {/*Carte déjà DL*/}
                 <section>
                     {ids.map((id)=>{
                             return (id.QrDl && <QrCodeDl id={id.id} route="USer/" COM_ACTnom={id.COM_ACTnom} QrDl={id.QrDl} key={`UserDl${id.COM_ACTnom}`} user/>)
                     })}
                 </section>
+                {/*Liste des vitrophanie*/}
                 <h2>CommercePasDl</h2>
+                {/*vitrophanie non DL*/}
                 <section>
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM" ||id.id.split("-")[1] === "ACT"){
@@ -138,6 +171,7 @@ export const Admin= () =>{
                     })}
                 </section>
                 <h2>CommerceDL</h2>
+                {/*vitrophanie déjà DL*/}
                 <section>
                 {ids.map((id)=>{
                         if(id.id.split("-")[1] === "COM" ||id.id.split("-")[1] === "ACT"){
@@ -148,6 +182,7 @@ export const Admin= () =>{
                     })}
                 </section>
                 <FormContain>
+                {/*Formulaire pour créer un membre*/}
                     <Form onSubmit={NewId}>
                         <p>ID</p>
                         <div>
@@ -194,6 +229,7 @@ export const Admin= () =>{
                 </FormContain>
 
                 <h2>QR Audio</h2>
+                {/*Liste des QR audio */}
                 <section>
                     {AudioList.map((list)=>{
                         return <QRAudio list={list} key={list.AudioId}/>
@@ -201,6 +237,7 @@ export const Admin= () =>{
                 </section>
             </AdminContain>
             :
+            /* Si pas d'admin valid, formulaire de connection */
             <FormContain>
                 <Form onSubmit={HandleValidSubmit}>
                     <Input text="Email" type="mail" onChange={(e:any)=>{setEmail(e.target.value)}}/>
