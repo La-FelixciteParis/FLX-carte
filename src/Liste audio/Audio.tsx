@@ -1,3 +1,5 @@
+//Juste une liste d'audio pour le projet des QR Audio
+
 export const AudioList =[
     {
         AudioId:"1",
