@@ -32,7 +32,7 @@ export const HeaderStyle= styled.header`
     position:fixed;
     top:0;
     border-bottom: 2px solid ${({color})=>color}${({headerAppear}:Header)=>headerAppear ? '80':'00'} ;
-    background:${({headerAppear,color}:Header)=>headerAppear ? `linear-gradient(to left, ${color}80 ,rgba(255,255,255,1)25%), url(/Images/FelixPlace.jpg)`: "none"};
+    background: ${({color})=>`linear-gradient(to left, ${color}80 ,rgba(255,255,255,1)25%), url(/Images/FelixPlace.jpg)`};
     backdrop-filter: blur(5px);
     background-size: cover;
     background-position: right;
@@ -49,12 +49,12 @@ export const HeaderStyle= styled.header`
       align-items:center;
 
       p{
-        color: ${({headerAppear}:Header)=>headerAppear? "#00000090": "#FFFFFF90"};
         font-size:20px;
+        color: #00000090;
 
         :hover{
-            cursor:pointer;
-            color: ${({headerAppear}:Header)=>headerAppear? "#000000": "#FFFFFF"};
+          cursor:pointer;
+          color: #000000;
         }
       }
 
@@ -63,10 +63,18 @@ export const HeaderStyle= styled.header`
       }
 
       .adhésion{
-        font-size:25px;
+        color:#FFFFFF;
+        font-size:20px;
         background: ${Principal};
-        padding:5px;
+        padding:10px;
         border-radius:10px;
+
+        :hover{
+          color:#000000;
+          cursor:pointer;
+          background: none;
+          border: 2px solid ${Principal}; 
+      }
       }
 
       .menu{
@@ -101,12 +109,6 @@ export const HeaderStyle= styled.header`
 
       a{
         text-decoration: none;
-        color: #00000090;
-
-        :hover{
-            cursor:pointer;
-            color: #000000;
-        }
       }
 
       @media (max-width: 900px){
