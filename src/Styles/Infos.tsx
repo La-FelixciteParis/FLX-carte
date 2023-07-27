@@ -64,6 +64,10 @@ button{
     }
 }
 
+.naviguecommerce{
+    margin-top:30px;
+}
+
 div{
     display: flex;
     align-items:center;
