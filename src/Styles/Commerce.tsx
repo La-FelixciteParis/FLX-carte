@@ -144,26 +144,6 @@ export const CommerceContain= styled.div`
         }
     }
 
-    .hidden{
-        animation: ${WidthDown} 0.5s forwards;
-        padding:0;
-        height:80vh;
-    }
-
-    .show{
-        padding:0;
-        opacity:1;
-        transition:1s;
-        z-index:1;
-        article{
-            gap:0;
-
-            div{
-                z-index:1;
-            }
-        }
-    }
-
     .false{
         padding:0;
         max-width:0;
