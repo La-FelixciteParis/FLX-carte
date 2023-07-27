@@ -1,4 +1,11 @@
+//Context pour garder un utilisateur connecté
+
+//Import
+
+//Base
 import { createContext, useEffect, useState } from "react";
+
+//Type
 import { ChildrenPropsType } from "../Types/Children";
 
 const UserContext = createContext({})
@@ -9,6 +16,8 @@ const UserContextProvider = ({children}:ChildrenPropsType)=>{
     const [isCommerce,setIsCommerce]=useState<boolean>(false)
 
     useEffect(()=>{
+
+        //Si déjà un id dans le storage on le récupère
         const idLocal= localStorage.getItem('IdFLX')
         if(idLocal){
             setIdUser(idLocal)
@@ -16,6 +25,7 @@ const UserContextProvider = ({children}:ChildrenPropsType)=>{
     },[])
 
     useEffect(()=>{
+        //Quand on à un id , on le met en storage et on le split pour récupérer les infos de village et d'assoc 
         if(idUser){
             localStorage.setItem('IdFLX',idUser)
             setInfoIdUser(idUser.split("-"))
@@ -23,6 +33,7 @@ const UserContextProvider = ({children}:ChildrenPropsType)=>{
     },[idUser])
 
     const logoutId = ()=>{
+        //Déconnexion total de l'utilisateur
         localStorage.removeItem('IdFLX')
         setInfoIdUser(null)
         setIdUser(null)
