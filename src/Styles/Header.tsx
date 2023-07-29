@@ -130,7 +130,7 @@ export const HeaderStyle= styled.header`
         align-items:center;
         justify-content:center;
         gap:10px;
-        height:calc(100vh - 199px);
+        height:100vh;
 
         p{
           cursor: pointer;
