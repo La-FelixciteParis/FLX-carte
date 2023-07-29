@@ -27,7 +27,6 @@ export const ButtonStyle=styled.button`
     border:  1px solid ${({color})=>color};
     border-radius:20px;
     color: #00000090;
-    width:100px;
     height: 30px;
 
     :hover{

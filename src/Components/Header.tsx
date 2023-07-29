@@ -16,7 +16,7 @@ import { UserContext } from "../Context/IdUser"
 //Style
 import { bleu, jaune, Principal, vert } from "../Styles/Couleur"
 import { ButtonStyle } from "../Styles/Général"
-import { HeaderStyle, MenuBurger } from "../Styles/Header"
+import { HeaderStyle, MenuBurger, MyContain } from "../Styles/Header"
 
 export const Header = ()=>{
     
@@ -26,7 +26,7 @@ export const Header = ()=>{
     const [scroll,setScroll]=useState<boolean>(false)
     const [showMenu,setShowMenu] = useState<boolean>(false)
 
-    const {infoIdUser,idUser,isCommerce,logoutId} = useContext(UserContext) as any
+    const {infoIdUser,idUser,logoutId} = useContext(UserContext) as any
     const {logoutCommerçant} = useContext(CommerçantContext) as any
 
 
@@ -91,8 +91,6 @@ export const Header = ()=>{
     
     },[])
 
-    
-
     useEffect(()=>{
         //Quand le scrollTop change
         //on récupère la hauteur de la page
@@ -107,6 +105,12 @@ export const Header = ()=>{
         
     },[scrollTop])
     
+    //Fonction pour changer de page et reset le menu burger
+
+    const handleChangePage = (direction:string) =>{
+        setShowMenu(false)
+        navigate(`/${direction}`)
+    }
 
     return(
 
@@ -115,20 +119,43 @@ export const Header = ()=>{
             <img className="logo" src="/Images/LogoEtoileFlx.png" alt="Logo Félixcité" onClick={handleHomeClick}/>
             <img className="anime" src="/Images/éclat.png" alt="éclat"/>
             <nav>
+                <MyContain className="menu">
+                    <div className="dropdown">
+                    <button className="dropbtn">Qui somme nous?</button>
+                    <div className="dropdown-content">
+                        <p onClick={()=>navigate("/")}>La Félixcité</p>
+                        <p onClick={()=>navigate("/ACPB")}>L'ACPB</p>
+                    </div>
+                    </div> 
+                </MyContain>
+                <p className="menu" onClick={()=>navigate('/Connect')}>se connecter</p>
+                <p className="menu" onClick={()=>navigate(`/Village/?Village=${location.pathname.split("/")[2].split("-")[2]}`)}>Les Villages</p>
+                <p className="menu" onClick={()=>navigate(('/Evenements'))}>Agenda</p>
+                { 
+                idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
+                 : 
+                 location.pathname.split("/")[1]=== "Connect" ? <ButtonStyle className="Commerce" color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>
+                 :
+                 <ButtonStyle color={color}><a className="adhésion" href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Adhérer</a></ButtonStyle>
+                }
                 <MenuBurger headerAppear={scroll} >
                     <button className={showMenu? "show_bar" : "none"} onClick={()=>setShowMenu(!showMenu)}>
                         <span></span>
                     </button>
                 </MenuBurger>
-            <p className="menu" onClick={()=>navigate('/Connect')}>se connecter</p>
-            <p className="menu" onClick={()=>navigate(`/Village/?Village=${location.pathname.split("/")[2].split("-")[2]}`)}>Les Villages</p>
-            <p className="menu" onClick={()=>navigate(('/Evenements'))}>Agenda</p>
-            {isCommerce ? <ButtonStyle color={color}><a className="adhésion" href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Adhérer</a></ButtonStyle>
-             : 
-            idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
-             : 
-            <ButtonStyle color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>}
             </nav>
+            <div className={`menusortie ${showMenu && "show"}`}>
+                <div>
+                    <p>Qui somme nous?</p>
+                        <ul>
+                            <li onClick={()=>handleChangePage("")}><p>La Félixcité</p></li>
+                            <li onClick={()=>handleChangePage("ACPB")}><p>L'ACPB</p></li>
+                        </ul>
+                </div>
+                <p onClick={()=>handleChangePage('Connect')}>se connecter</p>
+                <p onClick={()=>handleChangePage('Village')}>Les Villages</p>
+                <p onClick={()=>handleChangePage(('Evenements'))}>Agenda</p>
+            </div>
         </HeaderStyle>
     )
 }

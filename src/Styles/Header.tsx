@@ -38,7 +38,6 @@ export const HeaderStyle= styled.header`
     background-position: right;
     height: 72px;
     max-height: 72px;
-    overflow: hidden;
     z-index:2;
     transition:2s;
 
@@ -62,6 +61,11 @@ export const HeaderStyle= styled.header`
         border:none;
       }
 
+      .Commerce{
+        font-size:20px;
+        width:none;
+      }
+
       .adhésion{
         color:#FFFFFF;
         font-size:20px;
@@ -78,7 +82,7 @@ export const HeaderStyle= styled.header`
       }
 
       .menu{
-        @media (max-width: 780px){
+        @media (max-width: 900px){
           display:none;
         }
       }
@@ -91,6 +95,7 @@ export const HeaderStyle= styled.header`
         position:fixed;
         top:12.5px;
         left:60px;
+        z-index:10;
       }
     
       img:hover {
@@ -104,6 +109,7 @@ export const HeaderStyle= styled.header`
         top:14px;
         left:157px;
         animation: ${Eclat(({bright}:Header)=>bright)} 1s ease-in;
+        z-index:10;
       }
 
 
@@ -111,7 +117,38 @@ export const HeaderStyle= styled.header`
         text-decoration: none;
       }
 
-      @media (max-width: 900px){
+      .menusortie{
+        display:none;
+        position:fixed;
+        left:0;
+        top:0;
+        z-index:2;
+        width:100vw;
+        background:white;
+        padding:60px;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        height:calc(100vh - 199px);
+
+        p{
+          cursor: pointer;
+          :hover{
+            text-decoration: underline 2px ${Principal};
+          }
+        }
+      }
+
+      .menusortie.show{
+        display:flex;
+
+        @media (min-width:900px){
+          display:none;
+        }
+      }
+
+      @media (max-width: 1100px){
         padding:10px;
       }
 `
@@ -183,7 +220,65 @@ export const MenuBurger=styled.div`
         }
     }
 
-    @media (min-width: 780px){
+    @media (min-width: 900px){
         display:none;
     }
+`
+
+export const MyContain = styled.section`
+/* Dropdown Button */
+.dropbtn {
+  background:none;
+  color: #00000090;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  padding-left:30px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color:#00000090;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color:#000000;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown{
+  &:hover{
+    .dropdown-content{
+      display: block;
+    }
+  }
+}
+/* Change the color of the dropdown button when the dropdown content is shown */
+.dropdown{
+  &:hover{
+    .dropbtn{
+      color: #000000;
+    }
+  } 
+}
 `
