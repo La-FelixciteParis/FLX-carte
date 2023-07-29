@@ -118,22 +118,24 @@ export const HeaderStyle= styled.header`
       }
 
       .menusortie{
-        display:none;
+        display:flex;
         position:fixed;
         left:0;
         top:0;
         z-index:2;
         width:100vw;
         background:white;
+        opacity:0;
         padding:60px;
         flex-direction:column;
         align-items:center;
         justify-content:center;
         gap:10px;
-        height:100vh;
-
+        height:0;
+        transition: 1s;
         p{
           cursor: pointer;
+          
           :hover{
             text-decoration: underline 2px ${Principal};
           }
@@ -141,8 +143,8 @@ export const HeaderStyle= styled.header`
       }
 
       .menusortie.show{
-        display:flex;
-
+        height:100vh;
+        opacity:1;
         @media (min-width:900px){
           display:none;
         }
