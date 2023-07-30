@@ -1,9 +1,17 @@
+//Présentation de la Félixcité en HomePage
 
+//Import
+
+//Carousel
+import { Carousel } from "../Components/Carousel"
+
+//Style
 import { InfoContain } from "../Styles/Infos"
 
 export const Home = () =>{
     return(
         <InfoContain>
+            <Carousel/>
             <h1>Présentation</h1>
             <p>
             La FélixCité est un outil qui propose d’être acteur•rice de son environnement local d’habitation et/ou travail. C’est un outil de coopération co-construit qui évolue à l’usage et avec ses usagers dans le faire comme dans le recevoir.
