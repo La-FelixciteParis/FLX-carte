@@ -45,6 +45,7 @@ export const HeaderStyle= styled.header`
       display:flex;
       justify-content: flex-end;
       gap:30px;
+      z-index:1;
       align-items:center;
 
       p{
@@ -122,8 +123,8 @@ export const HeaderStyle= styled.header`
         position:fixed;
         left:0;
         top:0;
-        z-index:2;
         width:100vw;
+        z-index:0;
         background:white;
         opacity:0;
         padding:60px;
