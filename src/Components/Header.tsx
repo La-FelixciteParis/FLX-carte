@@ -132,7 +132,7 @@ export const Header = ()=>{
                 <p className="menu" onClick={()=>navigate(`/Village/?Village=${location.pathname.split("/")[2].split("-")[2]}`)}>Les Villages</p>
                 <p className="menu" onClick={()=>navigate(('/Evenements'))}>Agenda</p>
                 { 
-                idUser ? <> <ButtonStyle color={color} onClick={logout}>Déconnection</ButtonStyle> </>
+                idUser ? <> <ButtonStyle className="Commerce" color={color} onClick={logout}>Déconnection</ButtonStyle> </>
                  : 
                  location.pathname.split("/")[1]=== "Connect" ? <ButtonStyle className="Commerce" color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>
                  :
