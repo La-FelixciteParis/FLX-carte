@@ -79,6 +79,8 @@ export const Connect = () =>{
                     </ErrorContain>
                 }
             </div>
+            <p>Vous n'avez pas encore adhéré ?</p>
+            <ButtonStyle color={Principal} className="adhésion"><a href="https://lafelixcite.paris/adherer/" target="_blank" rel="noreferrer">Adhérer</a></ButtonStyle>
         </FormContain>
 
     )

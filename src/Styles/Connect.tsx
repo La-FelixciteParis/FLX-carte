@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Principal } from "./Couleur";
 
 export const Form = styled.form`
     display: flex;
@@ -15,7 +16,6 @@ export const Form = styled.form`
             flex-direction:column;
         };
     }
-
     
 `
 
@@ -26,6 +26,28 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+
+.adhésion{
+    font-size:20px;
+    background: ${Principal};
+    padding:10px;
+    border-radius:10px;
+
+    :hover{
+      cursor:pointer;
+      background: none;
+      border: 2px solid ${Principal};
+
+      a{
+        color:#000000;
+      }
+    }
+
+    a {
+        color:#FFFFFF;
+        text-decoration: none;
+    }
+  }
 `
 
 export const ErrorContain= styled.div`
