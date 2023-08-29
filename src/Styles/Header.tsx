@@ -43,9 +43,13 @@ export const HeaderStyle= styled.header`
 
     nav{
       display:flex;
-      gap:30px;
+      // gap:30px;
       z-index:1;
       align-items:center;
+
+      > p + p {
+        margin-left: 30px;
+      }
 
       p{
         font-size:20px;
@@ -244,6 +248,9 @@ export const MenuBurger=styled.div`
 
 export const MyContain = styled.section`
 /* Dropdown Button */
+
+margin:0 30px;
+
 .dropbtn {
   background:none;
   color: #00000090;
