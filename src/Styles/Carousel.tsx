@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CarouselType } from "../Types/Carousel";
 
-export const CarouselContain=styled.section`
+export const CarouselContain=styled.article`
     width:100%;
     display:flex;
     button{
@@ -12,16 +12,24 @@ export const CarouselContain=styled.section`
         top:297px;
         width:50px;
         height:50px;
-        color:white;
+        color:black;
         border:none;
         font-size:40px;
         padding:5px;
+        background:none;
+        cursor:pointer;
     }
     .precedent{
-        left:30px
+        left:30px;
+        @media (min-width: 1600px){
+            left:calc(30px + 5%);
+          }
     }
     .suivant{
         right:30px;
+        @media (min-width: 1600px){
+            right:calc(30px + 5%);
+          }
     }
 
     div{
