@@ -56,6 +56,10 @@ export const HeaderStyle= styled.header`
           cursor:pointer;
           color: #000000;
         }
+
+        @media (max-width: 1100px){
+          font-size:15px;
+        }
       }
 
       button{
@@ -78,8 +82,12 @@ export const HeaderStyle= styled.header`
           color:#000000;
           cursor:pointer;
           background: none;
-          border: 2px solid ${Principal}; 
-      }
+          border: 2px solid ${Principal};
+        }
+
+        @media (max-width: 1100px){
+          font-size:15px;
+        }
       }
 
       .menu{
@@ -95,7 +103,7 @@ export const HeaderStyle= styled.header`
         opacity: 0.8;
         position:fixed;
         top:12.5px;
-        left:60px;
+        left:35px;
         z-index:10;
       }
     
@@ -108,7 +116,7 @@ export const HeaderStyle= styled.header`
         width:28px;
         position:fixed;
         top:14px;
-        left:157px;
+        left:132px;
         animation: ${Eclat(({bright}:Header)=>bright)} 1s ease-in;
         z-index:10;
       }
@@ -151,9 +159,7 @@ export const HeaderStyle= styled.header`
         }
       }
 
-      @media (max-width: 1100px){
-        padding:10px;
-      }
+      
 `
 
 export const MenuBurger=styled.div`
@@ -236,6 +242,10 @@ export const MyContain = styled.section`
   padding: 16px;
   font-size: 20px;
   border: none;
+
+  @media (max-width: 1100px){
+    font-size:15px;
+  }
 }
 
 /* The container <div> - needed to position the dropdown content */
