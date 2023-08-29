@@ -28,7 +28,7 @@ export const HeaderStyle= styled.header`
     width:100%;
     justify-Content: flex-end;
     align-items: center;
-    padding:10px;
+    padding:20px;
     position:fixed;
     top:0;
     border-bottom: 2px solid ${({color})=>color}${({headerAppear}:Header)=>headerAppear ? '80':'00'} ;
@@ -43,7 +43,6 @@ export const HeaderStyle= styled.header`
 
     nav{
       display:flex;
-      justify-content: flex-end;
       gap:30px;
       z-index:1;
       align-items:center;
