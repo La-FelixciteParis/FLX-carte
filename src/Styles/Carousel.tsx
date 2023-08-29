@@ -21,14 +21,14 @@ export const CarouselContain=styled.article`
     }
     .precedent{
         left:30px;
-        @media (min-width: 1600px){
-            left:calc(30px + 5%);
+        @media (min-width: 1350px){
+            left:calc(50% - 650px);
           }
     }
     .suivant{
         right:30px;
-        @media (min-width: 1600px){
-            right:calc(30px + 5%);
+        @media (min-width: 1350px){
+            right:calc(50% - 650px);
           }
     }
 
