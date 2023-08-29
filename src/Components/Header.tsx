@@ -59,12 +59,6 @@ export const Header = ()=>{
         navigate("/")
     }
 
-    const handleConnexionCommerçant = ()=>{
-
-        //Renvoie vers la page de log d'un commerçant
-        navigate("/Login")
-    }
-
     const handleHomeClick = () =>{
         //renvoie à la homepage
         navigate("/")
@@ -119,24 +113,22 @@ export const Header = ()=>{
             <img className="logo" src="/Images/LogoEtoileFlx.png" alt="Logo Félixcité" onClick={handleHomeClick}/>
             <img className="anime" src="/Images/éclat.png" alt="éclat"/>
             <nav>
+                <p className="menu"onClick={()=>navigate("/")}>Qui somme nous?</p>
                 <MyContain className="menu">
                     <div className="dropdown">
-                    <button className="dropbtn">Qui somme nous?</button>
+                    <button className="dropbtn">Membres</button>
                     <div className="dropdown-content">
-                        <p onClick={()=>navigate("/")}>La Félixcité</p>
                         <p onClick={()=>navigate("/ACPB")}>L'ACPB</p>
                     </div>
                     </div> 
                 </MyContain>
-                <p className="menu" onClick={()=>navigate('/Connect')}>se connecter</p>
-                <p className="menu" onClick={()=>navigate(`/Village/?Village=${location.pathname.split("/")[2].split("-")[2]}`)}>Les Villages</p>
+                <p className="menu" onClick={()=>navigate(`/Villages`)}>Les Villages</p>
                 <p className="menu" onClick={()=>navigate(('/Evenements'))}>Agenda</p>
+                <p className="menu">Services</p>
                 { 
-                idUser ? <> <ButtonStyle className="Commerce" color={color} onClick={logout}>Déconnection</ButtonStyle> </>
-                 : 
-                 location.pathname.split("/")[1]=== "Connect" ? <ButtonStyle className="Commerce" color={color} onClick={handleConnexionCommerçant}>Commerçant</ButtonStyle>
+                idUser ? <> <ButtonStyle className="adhésion" color={color} onClick={logout}>Déconnection</ButtonStyle> </>
                  :
-                 <ButtonStyle color={color}><a className="adhésion" href="https://www.helloasso.com/associations/la-felixcite" target="_blank" rel="noreferrer">Adhérer</a></ButtonStyle>
+                 <ButtonStyle color={color}><p className="adhésion" onClick={()=>navigate('/Connect')}>Se connecter</p></ButtonStyle>
                 }
                 <MenuBurger headerAppear={scroll} >
                     <button className={showMenu? "show_bar" : "none"} onClick={()=>setShowMenu(!showMenu)}>
@@ -145,16 +137,16 @@ export const Header = ()=>{
                 </MenuBurger>
             </nav>
             <div className={`menusortie ${showMenu && "show"}`}>
+                <p onClick={()=>navigate("/")}>Qui somme nous?</p>
                 <div>
-                    <p>Qui somme nous?</p>
+                    <p>Membres</p>
                         <ul>
-                            <li onClick={()=>handleChangePage("")}><p>La Félixcité</p></li>
                             <li onClick={()=>handleChangePage("ACPB")}><p>L'ACPB</p></li>
                         </ul>
                 </div>
-                <p onClick={()=>handleChangePage('Connect')}>se connecter</p>
-                <p onClick={()=>handleChangePage('Village')}>Les Villages</p>
+                <p onClick={()=>handleChangePage('Villages')}>Les Villages</p>
                 <p onClick={()=>handleChangePage(('Evenements'))}>Agenda</p>
+                <p >Services</p>
             </div>
         </HeaderStyle>
     )

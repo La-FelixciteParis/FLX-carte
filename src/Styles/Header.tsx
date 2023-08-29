@@ -28,7 +28,7 @@ export const HeaderStyle= styled.header`
     width:100%;
     justify-Content: flex-end;
     align-items: center;
-    padding:10px 20% 10px 10px;
+    padding:10px;
     position:fixed;
     top:0;
     border-bottom: 2px solid ${({color})=>color}${({headerAppear}:Header)=>headerAppear ? '80':'00'} ;
@@ -234,7 +234,7 @@ export const MyContain = styled.section`
   background:none;
   color: #00000090;
   padding: 16px;
-  font-size: 16px;
+  font-size: 20px;
   border: none;
 }
 

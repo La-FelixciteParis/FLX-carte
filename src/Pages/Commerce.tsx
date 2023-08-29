@@ -71,7 +71,7 @@ export const Commerce = () =>{
                     <div className="InfoCom">
                         <p>{commerce.COM_ACTnom}</p>
                         {commerce.adresse && <p>{commerce.adresse}</p>}
-                        <p className="Village" onClick={()=>{navigate(`/Village?Village=${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
+                        <p className="Village" onClick={()=>{navigate(`/Villages?Village=${commerce.id.split("-")[2]}`)}}>village: {monVillage}</p>
                         
                         <ul>
                             <li>Gérant: {commerce.Prénom} {commerce.Nom}</li> <br/>
