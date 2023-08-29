@@ -142,17 +142,22 @@ export const HeaderStyle= styled.header`
         height:0;
         transition: 1s;
         p{
-          cursor: pointer;
-          
-          :hover{
-            text-decoration: underline 2px ${Principal};
-          }
+          display:none;
         }
       }
 
       .menusortie.show{
         height:100vh;
         opacity:1;
+        p{
+          display:block;
+          cursor: pointer;
+          
+          
+          :hover{
+            text-decoration: underline 2px ${Principal};
+          }
+        }
         @media (min-width:900px){
           display:none;
         }
