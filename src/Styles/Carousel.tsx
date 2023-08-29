@@ -16,7 +16,8 @@ export const CarouselContain=styled.article`
         border:none;
         font-size:40px;
         padding:5px;
-        background:none;
+        background:#FFFFFF40;
+        border-radius:50px;
         cursor:pointer;
     }
     .precedent{

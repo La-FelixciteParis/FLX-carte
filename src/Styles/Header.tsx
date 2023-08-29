@@ -94,6 +94,10 @@ export const HeaderStyle= styled.header`
           display:none;
         }
       }
+
+      @media (max-width: 900px){
+        gap:0;
+      }
     }
 
     .logo {
