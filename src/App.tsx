@@ -12,7 +12,6 @@ import { FormaPage } from "./Components/FormatPage";
 /*import pages */
 import { Connect } from "./Pages/Connect";
 import { Info } from "./Pages/Info";
-import { LoginCommerçant } from "./Pages/LoginCommerçant";
 import { Admin } from "./Pages/Admin";
 import { Commerce } from "./Pages/Commerce";
 import { Home } from "./Pages/Home";
@@ -51,7 +50,6 @@ const App = () =>{
 
                 {/*Log */}
                 <Route path="/Connect" element={<Connect/>}/> {/*connection manuel/PC */}
-                <Route path="/Login" element={<LoginCommerçant/>}/> {/* log des commerçant */}
 
                 {/*Page d'information */}
                 <Route path="/User/:id" element={<Info/>}/> {/* page perso */}
