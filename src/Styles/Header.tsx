@@ -80,7 +80,7 @@ export const HeaderStyle= styled.header`
         background: ${Principal};
         padding:10px;
         border-radius:10px;
-
+        margin-left:30px;
         :hover{
           color:#000000;
           cursor:pointer;
