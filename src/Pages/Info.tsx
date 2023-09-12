@@ -306,7 +306,7 @@ export const Info = ()=>{
                         <button onClick={()=>handleChangeInfo(description)}>Valider</button></div> :<div className="Description"><p>{client.Description}</p> <button onClick={()=>setUpdate('Description')}>modifier</button></div>}
                     </article>
                 </section>
-                {infoIdUser[1] !== "HBT" && <div className="Gerance">
+                {infoIdUser[1] !== "HBT" && infoIdUser[1] !== "SJR" && <div className="Gerance">
                     <h3>Gérer ma page commerce</h3>
                     <div>
                         <button>Moi même</button>
