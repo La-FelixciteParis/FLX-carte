@@ -306,13 +306,13 @@ export const Info = ()=>{
                         <button onClick={()=>handleChangeInfo(description)}>Valider</button></div> :<div className="Description"><p>{client.Description}</p> <button onClick={()=>setUpdate('Description')}>modifier</button></div>}
                     </article>
                 </section>
-                <div className="Gerance">
+                {infoIdUser[1] !== "HBT" && <div className="Gerance">
                     <h3>Gérer ma page commerce</h3>
                     <div>
                         <button>Moi même</button>
                         <button onClick={()=>navigate('/Email')}>Par l'Admin</button>
                     </div>
-                </div>
+                </div>}
 
                 <section className="Village">
                     <h2 onClick={()=>{navigate(`/Villages?Village=${infoIdUser[2]}`)}}>Actualité de votre village:</h2>
